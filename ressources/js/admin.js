@@ -19,7 +19,7 @@ document.getElementById("add-match-btn").addEventListener('click', (e) => {
   window.location.href = 'modifygame?matchId=0';
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   securePageLoad(window.location.pathname);
 
   const button = document.getElementById('button-user');
@@ -39,9 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
   closeBtnuser.addEventListener('click', () => {
     modaluser.style.display = 'none';
   });
-  logoutBtn.addEventListener('click', () => {
-    sessionStorage.clear();
-    window.location.href = 'connexion';
+  logoutBtn.addEventListener('click', async () => {
+    try{
+      await Parse.User.logOut();
+      console.log('User logged out');
+      window.location.href = 'connexion';
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   });
 
   //Display matches

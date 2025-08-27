@@ -18,9 +18,10 @@ async function securePageLoad(page) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   
   if (getQueryParam('sponsors') === 'true') document.getElementById('sponsors-modal').style.display = 'flex';
+  
   securePageLoad(window.location.pathname);
 
   const button = document.getElementById('button-user');
@@ -28,18 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('close-modal');
   const logoutBtn = document.getElementById('logout-btn');
 
+  const currentUser = Parse.User.current();
+  try{
+    const user = await Parse.User.current().fetch();
+    document.getElementById("button-user").textContent = user.getUsername();
+    document.getElementById('modal-name').textContent = user.getUsername();
+    document.getElementById('modal-point').textContent = user.get('point');
+  }catch(e){
+    console.error("Session expired:", e.message);
+  }
+
   // Remplir les infos utilisateur
-  document.getElementById("button-user").textContent = sessionStorage.getItem('userName');
-  document.getElementById('modal-name').textContent = sessionStorage.getItem('userName');
-  document.getElementById('modal-point').textContent = sessionStorage.getItem('userPoint');
   button.addEventListener('click', (e) => {
     e.preventDefault();
     modal.style.display = 'flex';
   });
   closeBtn.addEventListener('click', () => modal.style.display = 'none');
-  logoutBtn.addEventListener('click', () => {
-    sessionStorage.clear();
-    window.location.href = 'connexion';
+  logoutBtn.addEventListener('click', async () => {
+    try{
+      await Parse.User.logOut();
+      console.log('User logged out');
+      window.location.href = 'connexion';
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   });
 
   //Recuperation des données de match et tri

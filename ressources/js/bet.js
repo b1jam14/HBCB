@@ -104,7 +104,7 @@ document.getElementById('button-bet').addEventListener('click', function () {
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     
     securePageLoad(window.location.pathname);
 
@@ -130,10 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtnuser.addEventListener('click', () => {
         modaluser.style.display = 'none';
     });
-    logoutBtn.addEventListener('click', () => {
-        sessionStorage.clear();
-        window.location.href = 'connexion';
-    });
+    logoutBtn.addEventListener('click', async () => {
+        try{
+          await Parse.User.logOut();
+          console.log('User logged out');
+          window.location.href = 'connexion';
+        } catch (error) {
+          console.error('Error logging out:', error);
+        }
+      });
 
 
     const matchId = getQueryParam('matchId');

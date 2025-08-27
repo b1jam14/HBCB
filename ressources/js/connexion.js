@@ -1,3 +1,6 @@
+Parse.initialize("dsosX49CI2Sb3fAskvraQl4zuSUsqmGr46cKNTKJ", "iHTYhrd7UsGulkqoyppRb1kemD4Vl26ti7GxJn0S"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+Parse.serverURL = "https://parseapi.back4app.com/";
+
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const courriel = document.getElementById('id').value;
@@ -12,7 +15,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     console.log("Redirecting to:", page);
 
     // Redirect based on Cloud Function response
-    window.location.href = page;
+    window.location.href = page+"?sponsors=true";
 
   } catch (error) {
       console.error("Login failed or Cloud Function error:", error.message);

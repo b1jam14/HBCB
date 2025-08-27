@@ -66,9 +66,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   closeBtn.addEventListener('click', () => modal.style.display = 'none');
 
   // Logout
-  logoutBtn.addEventListener('click', () => {
-    sessionStorage.clear();
-    window.location.href = 'connexion';
+  logoutBtn.addEventListener('click', async () => {
+    try{
+      await Parse.User.logOut();
+      console.log('User logged out');
+      window.location.href = 'connexion';
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   });
   /********************************************/
   /*           Set score scroller             */
