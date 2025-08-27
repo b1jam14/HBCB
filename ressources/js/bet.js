@@ -2,10 +2,25 @@ var winner=null;
 var betchanged=false;
 var betId=null;
 
+Parse.initialize("dsosX49CI2Sb3fAskvraQl4zuSUsqmGr46cKNTKJ", "iHTYhrd7UsGulkqoyppRb1kemD4Vl26ti7GxJn0S"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+        Parse.serverURL = "https://parseapi.back4app.com/";
+
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
+
+async function securePageLoad(page) {
+    try {
+        // Call Cloud Function to verify access
+        await Parse.Cloud.run("checkPageAccess", { page: page });
+        console.log("Access granted to", page);
+        // Page can safely load
+    } catch (error) {
+        console.error("Access denied:", error.message);
+        window.location.href = "connexion"; // redirect to login or error page
+    }
+  }
 
 document.getElementById('button-team1').addEventListener('click', () => {
     document.getElementById('button-team1').style.backgroundColor = '#4075d7';
@@ -91,8 +106,7 @@ document.getElementById('button-bet').addEventListener('click', function () {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    const userId = sessionStorage.getItem('userId');
-    if (!userId) window.location.href = 'connexion';
+    securePageLoad(window.location.pathname);
 
     /********************************************/
     /*        Fenetre modale utilisateur        */

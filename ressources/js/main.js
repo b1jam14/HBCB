@@ -1,14 +1,27 @@
+Parse.initialize("dsosX49CI2Sb3fAskvraQl4zuSUsqmGr46cKNTKJ", "iHTYhrd7UsGulkqoyppRb1kemD4Vl26ti7GxJn0S"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+        Parse.serverURL = "https://parseapi.back4app.com/";
+
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
 }
 
+async function securePageLoad(page) {
+  try {
+      // Call Cloud Function to verify access
+      await Parse.Cloud.run("checkPageAccess", { page: page });
+      console.log("Access granted to", page);
+      // Page can safely load
+  } catch (error) {
+      console.error("Access denied:", error.message);
+      window.location.href = "connexion"; // redirect to login or error page
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  const userId = sessionStorage.getItem('userId');
-    if (!userId) window.location.href = 'connexion';
   
   if (getQueryParam('sponsors') === 'true') document.getElementById('sponsors-modal').style.display = 'flex';
-  
+  securePageLoad(window.location.pathname);
 
   const button = document.getElementById('button-user');
   const modal = document.getElementById('user-modal');

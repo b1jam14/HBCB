@@ -1,29 +1,24 @@
-document.getElementById('login-form').addEventListener('submit', function (e) {
+document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const id = document.getElementById('id').value;
-  const pw = document.getElementById('pw').value;
+  const courriel = document.getElementById('id').value;
+  const password = document.getElementById('pw').value;
 
-  fetch('ressources/data/user.json')
-      .then(response => response.json())
-      .then(users => {
-        const user = users.find(u => u.id === id && u.password === pw);
-        if (user) {
-          sessionStorage.setItem('userId', id);
-          sessionStorage.setItem('userName', user.name);
-          sessionStorage.setItem('userPoint', user.point);
-            if (id === "0001") {
-              window.location.href = 'admin';
-            } else {
-              window.location.href = 'main?sponsors=true';
-            }
-        } else {
-          document.getElementById('error').textContent = 'Identifiant ou mot de passe incorrect.';
-        }
-      })
-      .catch(error => {
-        console.error('Erreur lors du chargement du fichier JSON:', error);
-        alert('Erreur de connexion au fichier');
-      });
+  try {
+    const user = await Parse.User.logIn(courriel, password);
+    console.log("Login successful for:", user.get("username"));
+
+    // Call the secure Cloud Function to get the page
+    const page = await Parse.Cloud.run("getUserRolePage");
+    console.log("Redirecting to:", page);
+
+    // Redirect based on Cloud Function response
+    window.location.href = page;
+
+  } catch (error) {
+      console.error("Login failed or Cloud Function error:", error.message);
+      alert("Invalid username or password.");
+  }
+
 });
 
 
