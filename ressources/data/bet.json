@@ -1,0 +1,22 @@
+[
+    {
+        "id": "68ac97d3689fb",
+        "match": "68ac70c29f700",
+        "user": "0009",
+        "name": "Thomas",
+        "winner": "bischo",
+        "scoreteam1": "4",
+        "scoreteam2": "5",
+        "bestscorer": "fsdfs"
+    },
+    {
+        "id": "68ac97d3689fc",
+        "match": "68ac70c29f700",
+        "user": "0002",
+        "name": "Benjamin",
+        "winner": "bischo",
+        "scoreteam1": "4",
+        "scoreteam2": "5",
+        "bestscorer": "fsdfs"
+    }
+]

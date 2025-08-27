@@ -1,0 +1,80 @@
+[
+    {
+        "id": "0001",
+        "name": "Benjamin",
+        "password": "password",
+        "point": 0
+    },
+    {
+        "id": "0002",
+        "name": "Sophie",
+        "password": "password",
+        "point": 999
+    },
+    {
+        "id": "0003",
+        "name": "Eric",
+        "password": "password",
+        "point": 10
+    },
+    {
+        "id": "0004",
+        "name": "Julie",
+        "password": "password",
+        "point": 10
+    },
+    {
+        "id": "0005",
+        "name": "Nicolas",
+        "password": "password",
+        "point": 10
+    },
+    {
+        "id": "0006",
+        "name": "Jeremy",
+        "password": "password",
+        "point": 10
+    },
+    {
+        "id": "0007",
+        "name": "Laura",
+        "password": "password",
+        "point": 10
+    }, 
+    {
+        "id": "0008",
+        "name": "Alice",
+        "password": "password",
+        "point": 10
+    },
+    {
+        "id": "0009",
+        "name": "Thomas",
+        "password": "password",
+        "point": 10
+    },
+    {
+        "id": "0010",
+        "name": "Emma",
+        "password": "password",
+        "point": 10
+    },
+    {
+        "id": "0011",
+        "name": "Lucas",
+        "password": "password",
+        "point": 10
+    },  
+    {
+        "id": "0012",
+        "name": "Chloe",
+        "password": "password",
+        "point": 10
+    },  
+    {
+        "id": "0013",
+        "name": "Maxime",
+        "password": "password",
+        "point": 10
+    }
+]

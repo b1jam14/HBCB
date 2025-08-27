@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBCBet</title>
+    <link rel="stylesheet" href="ressources/css/connexion.css"> 
+</head>
+<body>  
+    <div class="top-section" >
+        <div class="top-section-content">
+            <img src="ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
+            <a href class="button-user" id="button-user">S'inscrire</a>
+        </div>
+        <div class="fade-top"></div>
+    </div>
+    <!-- Fenêtre modale cachée -->
+    <div id="user-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <div class="blank-2"></div>
+        <p><strong>Veillez contacter l'administrateur du site pour créer un compte</strong></p>
+        </div>
+    </div>
+
+    <div class="blank-1"></div>
+    <div class="central-section">
+        <h1>HBCBet</h1>
+        <h2>Connecte toi pour parier sur les matchs du HBCB !</h2>
+        <div class="blank-2"></div>
+        <p id="error" style="color: red; font-weight: bold;"></p>
+        <div class="central-section-content">
+            <form id="login-form">
+                <input type="text" id="id" name="id" maxlength="4" placeholder="Numéro de licence" required><br>
+                <div class="blank-2"></div>
+                <input type="password" id="pw" name="pw" placeholder="Mot de passe" required><br>
+                <div class="blank-2"></div>
+                <div class="blank-2"></div>
+                <div class="blank-2"></div> 
+                <input type="submit" value="Go Bischo !">
+            </form> 
+        </div>
+    </div>
+    <div class="blank-1"></div>
+    <footer class="bottom-section">
+        <div class="footer-images">
+            <a href="https://exalliance-finance.fr/" target="_blank"><img src="ressources/image/exalliance.png" alt="Exalliance"></a>
+            <a href="https://www.its-transports.fr/" target="_blank"><img src="ressources/image/its.png" alt="ITS"></a>
+            <a href="https://www.promocash.com/ecommerce/" target="_blank"><img src="ressources/image/promocash.png" alt="Promocash"></a>
+            <a href="https://www.sgofsecurite.fr/" target="_blank"><img src="ressources/image/sgof.png" alt="SGOF"></a>
+            <a href="https://www.sovec-entreprises.fr/" target="_blank"><img src="ressources/image/sovec.jpg" alt="Sovec"></a>
+            <a href="https://www.energitim.eu/" target="_blank"><img src="ressources/image/technichauffe.png" alt="Technichauffe"></a>
+        </div>
+    </footer>
+    <script src="ressources/js/connexion.js"></script>
+</body>
+</html>

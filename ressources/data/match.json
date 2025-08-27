@@ -1,0 +1,50 @@
+[
+    {
+        "id": "6843469d287c8",
+        "team": "SM2",
+        "adversaire": "Molsheim",
+        "time": "19:00",
+        "date": "2025-08-27",
+        "score": {
+            "home": 0,
+            "away": 0
+        },
+        "betwinner": null
+    },
+    {
+        "id": "684346af422dc",
+        "team": "SM1",
+        "adversaire": "Nancy",
+        "time": "21:00",
+        "date": "2025-08-27",
+        "score": {
+            "home": 0,
+            "away": 0
+        },
+        "betwinner": null
+    },
+    {
+        "id": "68434934eef2f",
+        "team": "U18M",
+        "adversaire": "Mulhouse",
+        "time": "15:00",
+        "date": "2025-08-27",
+        "score": {
+            "home": 0,
+            "away": 0
+        },
+        "betwinner": null
+    },
+    {
+        "id": "68ac70c29f700",
+        "team": "SF",
+        "adversaire": "Molsheim",
+        "time": "19:30",
+        "date": "2025-08-27",
+        "score": {
+            "home": "4",
+            "away": "5"
+        },
+        "betwinner": "Thomas"
+    }
+]
