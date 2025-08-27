@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HBCBet</title>
+    <!-- This is the minified production version of Parse JS -->
+    <script type="text/javascript" src="https://unpkg.com/parse/dist/parse.min.js"></script>
 </head>
 <body>
     <label for="test">Test :</label><br>
@@ -11,6 +13,11 @@
     <button type="button" class="button-nv" id="button-nv" >NVMATCH</button>
     <button type="button" class="button-md" id="button-md" >MDMATCH</button>
     <button type="button" class="button-bt" id="button-bt" >BTMATCH</button>
-    <script src="test.js"></script> 
+    <script src="test.js"></script>
+    <script>
+        // Initialize Parse
+        Parse.initialize("YOUR_PARSE_APP_ID", "YOUR_PARSE_JS_KEY"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+        Parse.serverURL = "https://parseapi.back4app.com/";
+    </script>
 </body>
 </html>
