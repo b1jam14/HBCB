@@ -95,68 +95,96 @@ document.addEventListener('DOMContentLoaded', async () => {
   let betEnd = false;
   const matchId = getQueryParam('matchId');
   if (matchId !== '0') {
-    try{
-    const getmatch = await fetch('ressources/data/api.php?type=match')
-      .then(response => response.json())
-      .then(result => {
-        if (result.status === 'success') {
-          const matches = result.data;
-          const matchInfo = matches.find(m => m.id == matchId);
-          document.getElementById('team').value = matchInfo.team;
-          document.getElementById('adversaire').value = matchInfo.adversaire;
-          document.getElementById('date').value = matchInfo.date;
-          document.getElementById('time').value = matchInfo.time;  
-          document.getElementById('btn-winner').disabled = false;
-          
-          if (matchInfo.betwinner) {
-            document.getElementById('button-enter').disabled = true;
-            
-            document.getElementById('score-select1').value = matchInfo.score.home;
-            document.getElementById('score-select2').value = matchInfo.score.away;
-            document.getElementById('gagnant').value = matchInfo.betwinner;
-            document.getElementById('score-select1').disabled = true;
-            document.getElementById('score-select2').disabled = true;
-            document.getElementById('button-enter-generate').disabled = true;
-            betEnd = true;
-;
-          }
-        }
-      });  
+    try {
+      const Games = Parse.Object.extend("Games");
+      const query = new Parse.Query(Games);
     
-    const getbet = await fetch('ressources/data/api.php?type=bet')
-      .then(response => response.json())
-      .then(result => {
-        if (result.status === 'success') {
-          const bets = result.data;
-          const matchId = getQueryParam('matchId');
-          const betsForMatch = bets.filter(bet => bet.match === matchId);
-          if(betEnd){
-            document.getElementById('nb-bet').textContent = "Nombre de pari(s) correct(s) pour ce match : " + betsForMatch.length + "/" + betsForMatch.length; 
-            if (betsForMatch.length > 0){
-              const validBets = betsForMatch.filter(bet => 
-                bet.scoreteam1 === document.getElementById("score-select1").value && bet.scoreteam2 === document.getElementById("score-select2").value
-              );
-              if (validBets.length > 0) {
-                const randomIndex = Math.floor(Math.random() * validBets.length);
-                const randomUser = validBets[randomIndex].name;
-                document.getElementById("gagnant").value = randomUser;
-                winner = randomUser;
-              }
-              document.getElementById('nb-bet').textContent = "Nombre de pari(s) correct(s) pour ce match : "+ validBets.length +"/" + betsForMatch.length;
-            } else {
-              document.getElementById('nb-bet').textContent = "Nombre de pari(s) correct(s) pour ce match : 00/" + betsForMatch.length;
-            }
-          }else{
-            document.getElementById('nb-bet').textContent = betsForMatch.length + " pari(s) en cours";
-          }
-          
+      // Get the specific match by ID
+      query.equalTo("objectId", matchId);
+    
+      const matches = await query.find();
+    
+      if (matches.length > 0) {
+        const matchInfo = matches[0];
+    
+        document.getElementById('team').value = matchInfo.get("team");
+        document.getElementById('adversaire').value = matchInfo.get("adversaire");
+    
+        const matchDate = matchInfo.get("date"); // Parse Date object
+        document.getElementById('date').value = matchDate.toISOString().slice(0, 10); // YYYY-MM-DD
+        document.getElementById('time').value = matchDate.toTimeString().slice(0, 5); // HH:MM
+    
+        document.getElementById('btn-winner').disabled = false;
+    
+        const betwinner = matchInfo.get("betwinner");
+        if (betwinner) {
+          document.getElementById('button-enter').disabled = true;
+    
+          const score = matchInfo.get("score") || {};
+          document.getElementById('score-select1').value = score.home ?? '';
+          document.getElementById('score-select2').value = score.away ?? '';
+          document.getElementById('gagnant').value = betwinner;
+    
+          document.getElementById('score-select1').disabled = true;
+          document.getElementById('score-select2').disabled = true;
+          document.getElementById('button-enter-generate').disabled = true;
+    
+          betEnd = true;
         }
-      })
-      .catch(error => console.error('Erreur API:', error));
-
+      } else {
+        console.error("Match not found");
+      }
+    
+    } catch (err) {
+      console.error('Erreur Parse:', err);
+    }  
+    /*
+    try {
+      const Bets = Parse.Object.extend("Bets");
+      const query = new Parse.Query(Bets);
+    
+      const matchId = getQueryParam('matchId');
+      query.equalTo("match", matchId); // assuming "match" stores the match ID as a string
+    
+      const bets = await query.find(); // Await Parse results
+    
+      const betsForMatch = bets.map(bet => ({
+        scoreteam1: bet.get("scoreteam1"),
+        scoreteam2: bet.get("scoreteam2"),
+        name: bet.get("name")
+      }));
+    
+      if (betEnd) {
+        document.getElementById('nb-bet').textContent =
+          "Nombre de pari(s) correct(s) pour ce match : " + betsForMatch.length + "/" + betsForMatch.length;
+    
+        if (betsForMatch.length > 0) {
+          const validBets = betsForMatch.filter(bet =>
+            bet.scoreteam1 == document.getElementById("score-select1").value &&
+            bet.scoreteam2 == document.getElementById("score-select2").value
+          );
+    
+          if (validBets.length > 0) {
+            const randomIndex = Math.floor(Math.random() * validBets.length);
+            const randomUser = validBets[randomIndex].name;
+            document.getElementById("gagnant").value = randomUser;
+            winner = randomUser;
+          }
+    
+          document.getElementById('nb-bet').textContent =
+            "Nombre de pari(s) correct(s) pour ce match : " + validBets.length + "/" + betsForMatch.length;
+        } else {
+          document.getElementById('nb-bet').textContent =
+            "Nombre de pari(s) correct(s) pour ce match : 00/" + betsForMatch.length;
+        }
+    
+      } else {
+        document.getElementById('nb-bet').textContent = betsForMatch.length + " pari(s) en cours";
+      }
+    
     } catch (error) {
-      console.error('Erreur API:', error);
-    }
+      console.error('Erreur Parse:', error);
+    } */
   }
 
 
@@ -170,67 +198,45 @@ document.addEventListener('DOMContentLoaded', async () => {
   /*            Add/Modify Game               */
   /********************************************/
 document.getElementById('button-enter').addEventListener('click', async (e) => {
-  e.preventDefault();
   const team = document.getElementById('team').value;
-  const adversaire = document.getElementById('adversaire').value;
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
+const adversaire = document.getElementById('adversaire').value;
+const date = document.getElementById('date').value;
+const time = document.getElementById('time').value;
 
-  if (!team || !adversaire || !date || !time) { // Check all fields are filled
-    alert('Merci de remplir tous les champs. \n(L\'erreur peut venir de la date)');
-  } 
-  else {
-    if (getQueryParam('matchId') !== '0') { // Modify existing match (Delete + New)
-      try{
-        const deletematch = await fetch('ressources/data/api.php?type=match', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ 
-            action: 'DELETE',
-            id: getQueryParam('matchId') 
-          })
-        })
-        if (!deletematch.ok) throw new Error(`Match delete failed: ${deletematch.status}`);
+if (!team || !adversaire || !date || !time) {
+  alert('Merci de remplir tous les champs. \n(L\'erreur peut venir de la date)');
+} else {
+  try {
+    const Games = Parse.Object.extend("Games");
+    const matchId = getQueryParam('matchId');
 
-        const addmatch = await fetch('ressources/data/api.php?type=match', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            action: 'MDMATCH',
-            id: getQueryParam('matchId'),
-            team: team,
-            adversaire: adversaire,
-            date: date,
-            time: time
-          })
-        })
-
-        if (!addmatch.ok) throw new Error(`Bet delete failed: ${addmatch.status}`);
-
-        console.log('Both match and bet deleted successfully');
-        window.location.href = 'admin';
-    } catch (error) {
-      console.error('Error deleting:', error);
-      alert('Échec de la modification du match. Voir la console pour plus de détails.');
-    } 
-  }else { // Create new match
-      fetch('ressources/data/api.php?type=match', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          action: 'NVMATCH',
-          team: team,
-          adversaire: adversaire,
-          date: date,
-          time: time
-        })
-      })
-        .then(() => {
-          window.location.href = 'admin';
-        })
-        .catch(console.error);
+    let game;
+    if (matchId !== '0') {
+      // Get existing match
+      const query = new Parse.Query(Games);
+      game = await query.get(matchId);
+    } else {
+      // Create new match
+      game = new Games();
     }
+
+    // Combine date + time into a single Date object
+    const matchDate = new Date(`${date}T${time}:00`);
+
+    // Update fields
+    game.set("team", team);
+    game.set("adversaire", adversaire);
+    game.set("date", matchDate);
+
+    // Save (create or update automatically)
+    await game.save();
+
+    window.location.href = 'admin';
+  } catch (error) {
+    console.error('Erreur Parse:', error);
+    alert('Échec de la modification du match. Voir Voir la console pour plus de détails.');
   }
+}
 });
 
 

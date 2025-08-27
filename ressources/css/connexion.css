@@ -6,7 +6,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-
 .top-section{
     position: fixed;
     width: 100%;
@@ -28,19 +27,6 @@ body {
     height: 10px;
     width: 100%;
 }
-
-.button-user {
-    color: white;
-    text-decoration: underline;
-    display: inline; /* or inline-span, NOT inline-block */
-    cursor: pointer;
-    
-}
-
-.central-section {
-    padding: 20px;
-    text-align: center;
-}
 .blank-1{
     height: 10vh;
     width: 100%;   
@@ -49,23 +35,12 @@ body {
     height: 3vh;
     width: 100%;   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.modal-signup {
+    color: white;
+    text-decoration: underline;
+    display: inline; 
+    cursor: pointer;  
+}
 .modal {
     position: fixed;
     z-index: 1000;
@@ -76,7 +51,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .modal-content {
     background-color: white;
     padding: 20px;
@@ -85,59 +59,39 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
-.close {
+.modal-close-btn {
     float: right;
     font-size: 24px;
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
+.central-section {
+    padding: 20px;
+    text-align: center;
+}
 input[type="text"],
 input[type="password"] {
-    border: 2px solid #4075d7; /* Bleu */
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
+    border: 2px solid #4075d7; 
+    border-radius: 25px;        
+    padding: 8px;              
+    outline: none;             
     font-size: larger;
-    width: 80%;               /* Largeur de l'input */
+    width: 80%;               
     text-align: center;
 }
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-color: #0056b3;     /* Couleur plus foncée au focus */
+    border-color: #0056b3;     
 }
 input[type="submit"] {
-    border: 2px solid #4075d7; /* Bleu */
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
-    width: 40%;               /* Largeur de l'input */
+    border: 2px solid #4075d7; 
+    border-radius: 25px;        
+    padding: 8px;              
+    outline: none;             
+    width: 40%;               
     text-align: center;
-    background-color: #4075d7; /* Couleur de fond */
+    background-color: #4075d7;
     color: white;
-
 }
-
-
-
-
-
-
-
-
-
-/********************************************/
-/*            Ne pas modifier               */
-/********************************************/
-
 .bottom-section {
     background-color: white;
     color: white;
@@ -147,14 +101,12 @@ input[type="submit"] {
     bottom: 0;
     width: 100%;
 }
-
 .footer-images {
     display: flex;
-    justify-content: space-around; /* espace égal entre les images */
+    justify-content: space-around; 
     align-items: center;
 }
-
 .footer-images img {
-    width: 60px; /* ou la largeur que tu souhaites */
-    height: auto; /* garde les proportions */
+    width: 60px; 
+    height: auto; 
 }

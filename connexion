@@ -11,38 +11,39 @@
     <div class="top-section" >
         <div class="top-section-content">
             <img src="ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
-            <a href class="button-user" id="button-user">S'inscrire</a>
+            <a href class="modal-signup" id="modal-signup-btn">S'inscrire</a>
         </div>
         <div class="fade-top"></div>
     </div>
     
-    <div id="user-modal" class="modal" style="display: none;">
+    <div id="modal-signup-box" class="modal" style="display: none;">
         <div class="modal-content">
-        <span id="close-modal" class="close">&times;</span>
-        <div class="blank-2"></div>
-        <p><strong>Veillez contacter l'administrateur du site pour créer un compte</strong></p>
+            <span id="modal-close-btn" class="modal-close-btn">&times;</span>
+            <div class="blank-2"></div>
+            <p><strong>Veillez contacter l'administrateur du site pour créer un compte</strong></p>
         </div>
     </div>
 
     <div class="blank-1"></div>
+    
     <div class="central-section">
         <h1>HBCBet</h1>
         <h2>Connecte toi pour parier sur les matchs du HBCB !</h2>
         <div class="blank-2"></div>
-        <p id="error" style="color: red; font-weight: bold;"></p>
+        <p id="login-error" style="color: red; font-weight: bold;"></p>
         <div class="central-section-content">
             <form id="login-form">
                 <input type="text" id="id" name="id" placeholder="Courriel" required><br>
                 <div class="blank-2"></div>
                 <input type="password" id="pw" name="pw" placeholder="Mot de passe" required><br>
-                <div class="blank-2"></div>
-                <div class="blank-2"></div>
-                <div class="blank-2"></div> 
+                <div class="blank-1"></div>
                 <input type="submit" value="Go Bischo !">
             </form> 
         </div>
     </div>
+
     <div class="blank-1"></div>
+    
     <footer class="bottom-section">
         <div class="footer-images">
             <a href="https://exalliance-finance.fr/" target="_blank"><img src="ressources/image/exalliance.png" alt="Exalliance"></a>
@@ -53,6 +54,7 @@
             <a href="https://www.energitim.eu/" target="_blank"><img src="ressources/image/technichauffe.png" alt="Technichauffe"></a>
         </div>
     </footer>
+    
     <script src="ressources/js/connexion.js"></script>
 </body>
 </html>

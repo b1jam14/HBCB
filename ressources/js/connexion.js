@@ -1,3 +1,7 @@
+/********************************************/
+/*            Ne pas modifier               */
+/********************************************/
+
 Parse.initialize("dsosX49CI2Sb3fAskvraQl4zuSUsqmGr46cKNTKJ", "iHTYhrd7UsGulkqoyppRb1kemD4Vl26ti7GxJn0S"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
 Parse.serverURL = "https://parseapi.back4app.com/";
 
@@ -15,29 +19,21 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     console.log("Redirecting to:", page);
 
     // Redirect based on Cloud Function response
-    window.location.href = page+"?sponsors=true";
+    if (page === "/admin") {
+      window.location.href = "admin";
+    } else {
+      window.location.href = page + "?sponsors=true";
+    }
 
   } catch (error) {
-      console.error("Login failed or Cloud Function error:", error.message);
-      alert("Invalid username or password.");
+    document.getElementById('login-error').textContent = "Courriel ou mot de passe incorrect.";
+    console.error("Login failed or Cloud Function error:", error.message);
   }
-
 });
 
-
-
-//Modal
-document.addEventListener('DOMContentLoaded', () => {
-  const button = document.getElementById('button-user');
-  const modal = document.getElementById('user-modal');
-  const closeBtn = document.getElementById('close-modal');
-
-  // Afficher la fenêtre modale
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    modal.style.display = 'flex';
-  });
-
-  // Fermer la fenêtre
-  closeBtn.addEventListener('click', () => modal.style.display = 'none');
+document.getElementById('modal-signup-btn').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('modal-signup-box').style.display = 'flex';
 });
+
+document.getElementById('modal-close-btn').addEventListener('click', () => document.getElementById('modal-signup-box').style.display = 'none');

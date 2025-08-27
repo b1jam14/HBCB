@@ -58,68 +58,74 @@ document.addEventListener('DOMContentLoaded', async () => {
   //Recuperation des données de match et tri
   const matchContainer = document.getElementById('match-container');
 
-  fetch('ressources/data/api.php?type=match')
-    .then(response => response.json())
-    .then(result => {
-      if (result.status === 'success') {
-        const matches = result.data;
-        
-        // Tri par heure
-        matches.sort((a, b) => {
-          const toMinutes = t => {
-            const [h, m] = t.split(':').map(Number);
-            return h * 60 + m;
-          };
+  const Games = Parse.Object.extend("Games");
+const query = new Parse.Query(Games);
 
-          const dateComparison = new Date(a.date) - new Date(b.date);
-          if (dateComparison !== 0) {
-            return dateComparison;
-          }
+// Optional: you can filter future matches only
+query.greaterThanOrEqualTo("date", new Date());
+query.ascending("date"); // default sorting by date
 
-          return toMinutes(a.time) - toMinutes(b.time);
-        });
-        // Générer le HTML
-        matches.forEach(match => {
-          const matchDateTime = new Date(`${match.date}T${match.time}:00`);
-          const now = new Date();
+try {
+  const Games = Parse.Object.extend("Games");
+  const query = new Parse.Query(Games);
 
-          const diffHours = (matchDateTime - now) / (1000 * 60 * 60);
+  // Only future matches
+  query.greaterThanOrEqualTo("date", new Date());
+  query.ascending("date"); // Sort by date + time automatically
 
-          if(match.betwinner === null && diffHours <= 48 && diffHours >= 0){
-          const matchDiv = document.createElement('div');
-          matchDiv.classList.add('match');
-            const formattedDate = new Date(match.date).toLocaleDateString('fr-FR', {
-              day: '2-digit',
-              month: '2-digit'
-            });
+  // Await the query
+  const matches = await query.find();
 
-            matchDiv.innerHTML = `
-            <button class="match-button" id="${match.id}">
-              <div class="match-content">
-              <div class="match-info">
-              <div class="teams">${match.team} : HBCB - ${match.adversaire}</div>
-              <div class="match-time">${formattedDate} - ${match.time}</div>
-              </div>
-              <div class="arrow">&gt;</div>
-              </div>
-            </button>
-            `;
+  // Generate HTML
+  matches.forEach(match => {
+    const matchDateTime = match.get("date"); // Parse Date object
+    const now = new Date();
+    const diffHours = (matchDateTime - now) / (1000 * 60 * 60);
 
-          const button = matchDiv.querySelector('.match-button');
-          button.addEventListener('click', (e) => {
-            e.preventDefault();
-            sessionStorage.setItem('matchId', match.id);
-            window.location.href = 'bet?matchId=' + match.id;
-          });
+    const betwinner = match.get("betwinner");
+    console.log(betwinner, diffHours);
 
-          matchContainer.appendChild(matchDiv);
-        }
-        });
-      } else {
-        console.error('Erreur:', result.message);
-      }
-    })
-    .catch(err => console.error('Erreur réseau:', err));
+    if(betwinner === undefined && diffHours <= 48 && diffHours >= 0){
+      const matchDiv = document.createElement('div');
+      matchDiv.classList.add('match');
+
+      const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
+        day: '2-digit',
+        month: '2-digit'
+      });
+
+      const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Europe/Paris'
+      });
+
+      matchDiv.innerHTML = `
+        <button class="match-button" id="${match.id}">
+          <div class="match-content">
+            <div class="match-info">
+              <div class="teams">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+              <div class="match-time">${formattedDate} - ${formattedTime}</div>
+            </div>
+            <div class="arrow">&gt;</div>
+          </div>
+        </button>
+      `;
+
+      const button = matchDiv.querySelector('.match-button');
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        sessionStorage.setItem('matchId', match.id);
+        window.location.href = 'bet?matchId=' + match.id;
+      });
+
+      matchContainer.appendChild(matchDiv);
+    }
+  });
+
+  } catch (err) {
+    console.error('Erreur Parse:', err);
+  }
 })
 
 
