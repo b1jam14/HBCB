@@ -2,11 +2,12 @@ CONNEXION
 	Fenetre Modale
 		button-user -> modal-signup
 		button-user -> modal-signup-btn
-		user-modal -> modal-signup-div
+		user-modal -> modal-signup-box
 		modal-content ->
 		close-modal -> modal-close-btn
 		close
 
-
+MAIN
+	Fenetre Modale
 
 	
