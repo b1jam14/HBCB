@@ -21,7 +21,6 @@ async function securePageLoad(page) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  
   if (getQueryParam('sponsors') === 'true') document.getElementById('sponsors-modal').style.display = 'flex';
   
   securePageLoad(window.location.pathname);
@@ -48,24 +47,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     matches.forEach(match => {
       const matchDateTime = match.get("date"); 
       const now = new Date();
-      const diffHours = (matchDateTime - now) / (1000 * 60 * 60);
+
+      //A VERIFIER 
+      // Make sure both are in UTC for comparison
+      const diffHours = (matchDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
 
       const betwinner = match.get("betwinner");
 
-      if(betwinner === undefined && diffHours <= 48 && diffHours >= 0){
-        const matchDiv = document.createElement('div');
-        matchDiv.classList.add('match');
+      if (betwinner === undefined && diffHours <= 48 && diffHours >= 0) {
+          const matchDiv = document.createElement('div');
+          matchDiv.classList.add('match');
 
-        const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
-          day: '2-digit',
-          month: '2-digit'
-        });
+          // Format date in UTC
+          const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
+              day: '2-digit',
+              month: '2-digit',
+              timeZone: 'UTC'
+          });
 
-        const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Europe/Paris' //CHANGER POUR AVOIR LA BONNE HEURE
-        });
+          // Format time in UTC
+          const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
+              hour: '2-digit',
+              minute: '2-digit',
+              timeZone: 'UTC'
+          });
+           //A VERIFIER ^
+
 
         matchDiv.innerHTML = `
           <button class="match-button" id="${match.id}">
@@ -100,7 +107,7 @@ document.getElementById('modal-user-btn').addEventListener('click', (e) => {
   document.getElementById('modal-user-box').style.display = 'flex';
 })
 
-document.getElementById('modal-close-btn').addEventListener('click', () => modal.style.display = 'none');
+document.getElementById('modal-close-btn').addEventListener('click', () => document.getElementById('modal-user-box').style.display = 'none');
 
 document.getElementById('modal-logout-btn').addEventListener('click', async () => {
   try{

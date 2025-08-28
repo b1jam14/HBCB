@@ -2,7 +2,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-
 .top-section{
     position: fixed;
     width: 100%;
@@ -24,14 +23,20 @@ body {
     height: 10px;
     width: 100%;
 }
-
-.button-user {
+.blank-1{
+    height: 10vh;
+    width: 100%;   
+}
+.blank-2{
+    height: 3vh;
+    width: 100%;   
+}
+.modal-user {
     color: white;
     text-decoration: underline;
-    display: inline; /* or inline-span, NOT inline-block */
+    display: inline;
     cursor: pointer;
 }
-
 .modal {
     position: fixed;
     z-index: 1000;
@@ -42,7 +47,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .modal-content {
     background-color: white;
     padding: 20px;
@@ -51,14 +55,12 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
-.close {
+.modal-close-btn {
     float: right;
     font-size: 24px;
     cursor: pointer;
 }
-
-#logout-btn{
+#modal-logout-btn{
     background-color: #d74040;
     border: 2px solid #d74040;
     border-radius: 25px;        /* Bords arrondis */
@@ -68,58 +70,14 @@ body {
     text-align: center;
     color: white;
 }
-#logout-btn:hover {
+#modal-logout-btn:hover {
     background-color: #b30000;
     border: 2px solid #b30000;
 }
-
-#delete-btn{
-    background-color: #d74040;
-    border: 2px solid #d74040;
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
-    width: 40%;               /* Largeur de l'input */
-    text-align: center;
-    color: white;
-}
-#modify-btn{
-    background-color: #41af41;
-    border: 2px solid #41af41;;
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
-    width: 40%;               /* Largeur de l'input */
-    text-align: center;
-    color: white;
-}
-#delete-btn:hover {
-    background-color: #b30000;
-    border: 2px solid #b30000;
-}
-#modify-btn:hover {
-    background-color: green;
-    border: 2px solid green;
-}
-
-
-
-
-
 .central-section {
     padding: 20px;
     text-align: center;
 }
-.blank-1{
-    height: 10vh;
-    width: 100%;   
-}
-.blank-2{
-    height: 3vh;
-    width: 100%;   
-}
-
-
 .match-button {
     width: 100%;
     background-color: white;
@@ -131,65 +89,48 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.2s, border-color 0.2s;
-  }
-  
-  .match-button:hover {
+}
+.match-button:hover {
     background-color: #f0f8ff; /* Légère teinte au survol */
     border-color: #1565c0;
-  }
-  
-  .match-content {
+}
+.match-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .match-info {
+}  
+.match-info {
     text-align: left;
-  }
-  
-  .teams {
+}
+.teams {
     font-size: 18px;
     font-weight: 600;
     color: #1976d2;
-  }
-  
-  .match-time {
+}
+.match-time {
     font-size: 14px;
     color: #555;
     margin-top: 4px;
-  }
-  
-  .arrow {
-    font-size: 28px; /* GROSSE flèche */
+}
+.arrow {
+    font-size: 28px;
     color: #1976d2;
     padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-
-
-
-
-
-
-.add-match-btn {
-    border: 2px solid #4075d7; /* Bleu */
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
-    width: 60%;               /* Largeur de l'input */
-    text-align: center;
-    background-color: #4075d7; /* Couleur de fond */
-    color: white;
-    cursor: pointer;           /* Makes the button clickable */
 }
-
-
-
-
+  .add-match-btn {
+    border: 2px solid #4075d7; 
+    border-radius: 25px;       
+    padding: 8px;              
+    outline: none;             
+    width: 60%;               
+    text-align: center;
+    background-color: #4075d7; 
+    color: white;
+    cursor: pointer;
+}
 .bottom-section {
     background-color: white;
     color: white;
@@ -199,14 +140,12 @@ body {
     bottom: 0;
     width: 100%;
 }
-
 .footer-images {
     display: flex;
-    justify-content: space-around; /* espace égal entre les images */
+    justify-content: space-around; 
     align-items: center;
 }
-
 .footer-images img {
-    width: 60px; /* ou la largeur que tu souhaites */
-    height: auto; /* garde les proportions */
+    width: 60px; 
+    height: auto;
 }

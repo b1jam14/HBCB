@@ -15,19 +15,19 @@
     <div class="top-section" >
         <div class="top-section-content">
             <img src="./ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
-            <a href class="button-user" id="button-user"></a>
+            <a href class="modal-user" id="modal-user-btn"></a>
         </div>
         <div class="fade-top"></div>
     </div>
 
     <!-- Fenêtre modale cachée -->
-    <div id="user-modal" class="modal" style="display: none;">
+    <div id="modal-user-box" class="modal" style="display: none;">
         <div class="modal-content">
-        <span id="close-modal-user" class="close">&times;</span>
-        <h2 id="modal-name"></h2>
-        <p><strong>Point :</strong> <span id="modal-point"></span></p>
-        <button id="logout-btn">Déconnexion</button>
-        <div class="blank-2"></div>
+            <span id="modal-close-btn" class="modal-close-btn">&times;</span>
+            <h2 id="modal-username-text"></h2>
+            <p><strong>Point :</strong> <span id="modal-point-text"></span></p>
+            <button id="modal-logout-btn">Déconnexion</button>
+            <div class="blank-2"></div>
         </div>
     </div>
 

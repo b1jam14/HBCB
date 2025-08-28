@@ -1,18 +1,15 @@
 Parse.initialize("dsosX49CI2Sb3fAskvraQl4zuSUsqmGr46cKNTKJ", "iHTYhrd7UsGulkqoyppRb1kemD4Vl26ti7GxJn0S"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
-        Parse.serverURL = "https://parseapi.back4app.com/";
+Parse.serverURL = "https://parseapi.back4app.com/";
 
 async function securePageLoad(page) {
   try {
-      // Call Cloud Function to verify access
       await Parse.Cloud.run("checkPageAccess", { page: page });
       console.log("Access granted to", page);
-      // Page can safely load
   } catch (error) {
       console.error("Access denied:", error.message);
-      window.location.href = "connexion"; // redirect to login or error page
+      window.location.href = "connexion";
   }
 }
-
 
 document.getElementById("add-match-btn").addEventListener('click', (e) => {
   e.preventDefault();
@@ -22,32 +19,15 @@ document.getElementById("add-match-btn").addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', async () => {
   securePageLoad(window.location.pathname);
 
-  const button = document.getElementById('button-user');
-  const modaluser = document.getElementById('user-modal');
-  const logoutBtn = document.getElementById('logout-btn');
-
-  const closeBtnuser = document.getElementById('close-modal-user');
-
-  // Modal user
-  document.getElementById("button-user").textContent = sessionStorage.getItem('userName');
-  document.getElementById('modal-name').textContent = sessionStorage.getItem('userName');
-  document.getElementById('modal-point').textContent = sessionStorage.getItem('userPoint');
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    modaluser.style.display = 'flex';
-  });
-  closeBtnuser.addEventListener('click', () => {
-    modaluser.style.display = 'none';
-  });
-  logoutBtn.addEventListener('click', async () => {
-    try{
-      await Parse.User.logOut();
-      console.log('User logged out');
-      window.location.href = 'connexion';
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  });
+  const currentUser = Parse.User.current();
+  try{
+    const user = await currentUser.fetch();
+    document.getElementById('modal-user-btn').textContent = user.getUsername();
+    document.getElementById('modal-username-text').textContent = user.getUsername();
+    document.getElementById('modal-point-text').textContent = user.get('point');
+  }catch(e){
+    console.error("Session expired:", e.message);
+  }
 
   //Display matches
   const matchContainer = document.getElementById('match-container');
@@ -56,8 +36,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const Games = Parse.Object.extend("Games");
     const query = new Parse.Query(Games);
 
-    // Optional: only future matches
-    query.greaterThanOrEqualTo("date", new Date());
     query.ascending("date"); // Sort by date + time automatically
 
     const matches = await query.find();
@@ -69,16 +47,21 @@ document.addEventListener('DOMContentLoaded', async () => {
       const matchDiv = document.createElement('div');
       matchDiv.classList.add('match');
 
+      //A VERIFIER 
+      // Format date in UTC
       const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
         day: '2-digit',
-        month: '2-digit'
+        month: '2-digit',
+        timeZone: 'UTC'
       });
 
+      // Format time in UTC
       const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: 'Europe/Paris' // ENCORE UN PROBLEME ICI
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'UTC'
       });
+      //A VERIFIER ^
 
       matchDiv.innerHTML = `
         <button class="match-button" id="${match.id}">
@@ -95,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const button = matchDiv.querySelector('.match-button');
       button.addEventListener('click', (e) => {
         e.preventDefault();
-        sessionStorage.setItem('matchId', match.id);
+        sessionStorage.setItem('matchId', match.id); //A MODIFIER
         window.location.href = 'modifygame?matchId=' + match.id;
       });
 
@@ -107,3 +90,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 })
 
+document.getElementById('modal-user-btn').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('modal-user-box').style.display = 'flex';
+})
+
+document.getElementById('modal-close-btn').addEventListener('click', () => document.getElementById('modal-user-box').style.display = 'none');
+
+document.getElementById('modal-logout-btn').addEventListener('click', async () => {
+  try{
+    await Parse.User.logOut();
+    window.location.href = 'connexion';
+  } catch (error) {
+    console.error('Error logging out:', error);
+  }
+})

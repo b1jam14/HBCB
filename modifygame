@@ -11,24 +11,24 @@
     <div class="top-section" >
         <div class="top-section-content">
             <img src="./ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
-            <a href class="button-user" id="button-user"></a>
+            <a href class="modal-user" id="modal-user-btn"></a>
         </div>
         <div class="fade-top"></div>
     </div>
     <!-- Fenêtre modale cachée -->
     <div id="user-modal" class="modal" style="display: none;">
         <div class="modal-content">
-        <span id="close-modal" class="close">&times;</span>
-        <h2 id="modal-name"></h2>
-        <p><strong>Point :</strong> <span id="modal-point"></span></p>
-        <button id="logout-btn">Déconnexion</button>
-        <div class="blank-2"></div>
+            <span id="modal-close-btn" class="modal-close-btn">&times;</span>
+            <h2 id="modal-username-text"></h2>
+            <p><strong>Point :</strong> <span id="modal-point-text"></span></p>
+            <button id="modal-logout-btn">Déconnexion</button>
+            <div class="blank-2"></div>
         </div>
     </div>
 
-    <div class="tabbar">
-        <button id="btn-edit">Modifier le match</button>
-        <button id="btn-winner" disabled>Générer le gagnant</button>
+    <div class="slider">
+        <button id="slider-edit-btn">Modifier le match</button>
+        <button id="slider-generate-btn" disabled>Générer le gagnant</button>
         <div class="indicator" id="indicator"></div>
     </div>
 
@@ -66,7 +66,7 @@
         <input type="time" id="time" name="heure">
         <div class="blank-2"></div>
 
-        <button type="button" class="button-enter" id="button-enter" >Enregistrer</button>
+        <button type="button" class="button-enter" id="button-enter-save" >Enregistrer</button>
         <div class="blank-2"></div>
         <button type="button" class="button-delete" id="button-delete" >Supprimer</button> 
     </div>
@@ -74,23 +74,22 @@
     <div class="central-section" id="central-section-generatewinner" style="display: none;">
         <label for="title"> Score Final ?</label><br>
         <div class="score-container">
-          <div class="score-inputs">
-            <select class="score-select" id="score-select1"></select>
-            <select class="score-select" id="score-select2"></select>
-          </div>
+            <div class="score-inputs">
+                <select class="score-select" id="score-select1"></select>
+                <select class="score-select" id="score-select2"></select>
+            </div>
         </div>
         <div class="blank-2"></div>
         
         <!-- Gagnant -->
         <label for="gagnant">Gagnant :</label><br>
-        <input type="text" id="gagnant" name="gagnant" disabled>
-        <div id="nb-bet"></div>
+        <input type="text" id="gagnant-text" name="gagnant" disabled>
+        <div id="nb-bet-text"></div>
         <div class="blank-2"></div>
         
         <button type="button" class="button-enter" id="button-enter-generate" >Générer le gagnant</button>
         <div class="blank-2"></div>
         <button type="button" class="button-return" id="button-return" >Retour</button>
-        
     </div>
 
     <div class="blank-1"></div>
