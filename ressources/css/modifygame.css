@@ -26,7 +26,7 @@ body {
 .button-user {
     color: white;
     text-decoration: underline;
-    display: inline; /* or inline-span, NOT inline-block */
+    display: inline;
     cursor: pointer;
 }
 .central-section {

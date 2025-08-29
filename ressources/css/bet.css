@@ -3,7 +3,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
-
 .top-section{
     position: fixed;
     width: 100%;
@@ -26,14 +25,18 @@ body {
     height: 10px;
     width: 100%;
 }
-
 .button-user {
     color: white;
     text-decoration: underline;
-    display: inline; /* or inline-span, NOT inline-block */
+    display: inline;
     cursor: pointer;
 }
-
+.modal-user {
+    color: white;
+    text-decoration: underline;
+    display: inline;
+    cursor: pointer;
+  }
 .modal {
     position: fixed;
     z-index: 1000;
@@ -52,61 +55,25 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
-.close {
+.modal-close-btn {
     float: right;
     font-size: 24px;
     cursor: pointer;
 }
-
-#logout-btn{
+#modal-logout-btn{
     background-color: #d74040;
     border: 2px solid #d74040;
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
-    width: 40%;               /* Largeur de l'input */
+    border-radius: 25px;       
+    padding: 8px;
+    outline: none;
+    width: 40%;
     text-align: center;
     color: white;
 }
-#logout-btn:hover {
+#modal-logout-btn:hover {
     background-color: #b30000;
     border: 2px solid #b30000;
 }
-
-#delete-btn{
-    background-color: #d74040;
-    border: 2px solid #d74040;
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
-    width: 40%;               /* Largeur de l'input */
-    text-align: center;
-    color: white;
-}
-#modify-btn{
-    background-color: #41af41;
-    border: 2px solid #41af41;;
-    border-radius: 25px;        /* Bords arrondis */
-    padding: 8px;              /* Espacement intérieur */
-    outline: none;             /* Supprime le contour par défaut au focus */
-    width: 40%;               /* Largeur de l'input */
-    text-align: center;
-    color: white;
-}
-#delete-btn:hover {
-    background-color: #b30000;
-    border: 2px solid #b30000;
-}
-#modify-btn:hover {
-    background-color: green;
-    border: 2px solid green;
-}
-
-
-
-
-
 .central-section {
     padding: 20px;
     text-align: center;
@@ -136,7 +103,7 @@ body {
     max-width: 100%;
     position: relative;
     background-color: white;
-    border: 4px solid #1976d2; /* Couleur de la bordure */
+    border: 4px solid #1976d2; 
     border-radius: 30px;
     justify-content: center;
     flex-direction: column;
@@ -178,85 +145,77 @@ body {
     background-color: white;
 }
 #button-team1 {
-    border: 3px solid #4075d7; /* Different border color */
+    border: 3px solid #4075d7; 
     color: #4075d7;
 }
-
 #button-tie {
-    border: 3px solid #818181; /* Different border color */
+    border: 3px solid #818181;
     color: #818181;
 }
-
 #button-team2 {
-    border: 3px solid #b30000; /* Different border color */
+    border: 3px solid #b30000;
     color: #b30000;
 }
 .score-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-  
+} 
 .score-inputs {
     display: flex;
     align-items: center;
     gap: 5px;
-}
-  
+} 
 .score-inputs input {
     border: 2px solid #4075d7;
     border-radius: 25px;
     padding: 8px;
     outline: none;
     font-size: larger;
-    width: 100px;          /* Or 30% of parent, but using px is easier for centering */
+    width: 100px;         
     background-color: white;
     text-align: center;
 }
-
 .score-select{
     border: 2px solid #4075d7;
     border-radius: 25px;
     padding: 8px;
     font-size: larger;
-    width: 120px;        /* Wider to fit dropdown arrow */
+    width: 120px;       
     background-color: white;
-    text-align-last: center; /* Center selected option text */
+    text-align-last: center; 
     margin-bottom: 15px;
     outline: none;
-    -webkit-appearance: none;  /* Optional: remove default arrow */
+    -webkit-appearance: none; 
     -moz-appearance: none;
     appearance: none;
     cursor: pointer;
 }
 #score-select1 {
-    border: 3px solid #4075d7; /* Different border color */
+    border: 3px solid #4075d7; 
     color: #4075d7;
 }
 #score-select2 {
-    border: 3px solid #b30000; /* Different border color */
+    border: 3px solid #b30000; 
     color: #b30000;
 }
-
 #bestscorer {
-    border: 3px solid #4075d7; /* Bleu */
-    border-radius: 25px;        /* Bords arrondis */
+    border: 3px solid #4075d7;
+    border-radius: 25px;
     padding: 8px;
     outline: none;
     font-size: larger;
-    width: 60%;                 /* Largeur uniforme */
+    width: 60%; 
     text-align: center;
-    margin-bottom: 15px;        /* Espacement entre les champs */
-    background-color: white;    /* Fond blanc uniforme pour tous */
+    margin-bottom: 15px; 
+    background-color: white; 
     font-size: 22px;
     margin: 0 auto;
     margin-bottom: 10px;
 }
-  
 .button-bet:hover {
     background-color: #0056b3;
 }
-
 .bottom-section {
     background-color: white;
     color: white;
@@ -266,14 +225,12 @@ body {
     bottom: 0;
     width: 100%;
 }
-
 .footer-images {
     display: flex;
-    justify-content: space-around; /* espace égal entre les images */
+    justify-content: space-around; 
     align-items: center;
 }
-
 .footer-images img {
-    width: 60px; /* ou la largeur que tu souhaites */
-    height: auto; /* garde les proportions */
+    width: 60px;
+    height: auto;
 }

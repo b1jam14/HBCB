@@ -61,8 +61,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     
         const matchDate = matchInfo.get("date"); // Parse Date object
         console.log(matchDate); // A VERIFIER
-        document.getElementById('date').value = matchDate.toISOString().slice(0, 10); // YYYY-MM-DD
-        document.getElementById('time').value = matchDate.toTimeString().slice(0, 5); // HH:MM
+        
+        // Use UTC time explicitly
+        document.getElementById('date').value = matchDate.toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
+        
+        // Format time in UTC (HH:MM)
+        const utcHours = String(matchDate.getUTCHours()).padStart(2, '0');
+        const utcMinutes = String(matchDate.getUTCMinutes()).padStart(2, '0');
+        document.getElementById('time').value = `${utcHours}:${utcMinutes}`;
     
         const betwinner = matchInfo.get("betwinner");
         if (betwinner) {
