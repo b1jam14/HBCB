@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         button.addEventListener('click', (e) => {
           e.preventDefault();
           sessionStorage.setItem('matchId', match.id);
-          window.location.href = 'bet.html?matchId=' + match.id;
+          window.location.href = 'modifygame.html?matchId=' + match.id;
         });
 
       }else if (diffHours < 0 && diffHours >= -72) {
@@ -100,6 +100,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
           </button>
         `;
+
+        const button = matchDiv.querySelector('.match-button');
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          sessionStorage.setItem('matchId', match.id);
+          window.location.href = 'modifygame.html?matchId=' + match.id;
+        });
         }else if(betwinner){
             matchDiv.innerHTML = `
             <button class="match-button green" id="${match.id}">
@@ -113,6 +120,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             </button>
           `;
         }
+
+        const button = matchDiv.querySelector('.match-button');
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          sessionStorage.setItem('matchId', match.id);
+          window.location.href = 'modifygame.html?matchId=' + match.id;
+        });
       }else{
         matchDiv.innerHTML = `
           <button class="match-button red" id="${match.id}" >
@@ -125,6 +139,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
           </button>
         `;
+
+        const button = matchDiv.querySelector('.match-button');
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          sessionStorage.setItem('matchId', match.id);
+          window.location.href = 'modifygame.html?matchId=' + match.id;
+        });
       }
       matchContainer.appendChild(matchDiv);
     });
