@@ -90,7 +90,6 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.2s, border-color 0.2s;
 }
-  
 .match-button:hover {
     background-color: #f0f8ff; /* Légère teinte au survol */
     border-color: #1565c0;
@@ -136,7 +135,7 @@ body {
     align-items: center;
 }
 .footer-images img {
-    width: 60px; /* ou la largeur que tu souhaites */
+    width: 100px; /* ou la largeur que tu souhaites */
     height: auto; /* garde les proportions */
 }
 .modal {
