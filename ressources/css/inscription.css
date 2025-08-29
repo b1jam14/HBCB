@@ -1,0 +1,260 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.top-section{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.top-section-content {
+    background: #4075d7;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    height: 100px;
+    max-height: 8vh;
+}
+.fade-top {
+    background: linear-gradient(to bottom, #4075d7, #ffffff);
+    height: 10px;
+    width: 100%;
+}
+.signin-btn {
+    color: white;
+    text-decoration: underline;
+    display: inline;
+    cursor: pointer;
+}
+.central-section {
+    padding: 20px;
+    text-align: center;
+}
+.blank-1{
+    height: 10vh;
+    width: 100%;   
+}
+.blank-2{
+    height: 3vh;
+    width: 100%;   
+}
+.modal-user {
+  color: white;
+  text-decoration: underline;
+  display: inline;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.modal-close-btn {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+#modal-logout-btn{
+  background-color: #d74040;
+  border: 2px solid #d74040;
+  border-radius: 25px;       
+  padding: 8px;
+  outline: none;
+  width: 40%;
+  text-align: center;
+  color: white;
+}
+#modal-logout-btn:hover {
+  background-color: #b30000;
+  border: 2px solid #b30000;
+}
+label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+}
+input[type="text"],
+input[type="date"],
+input[type="time"],
+select {
+  border: 2px solid #4075d7;
+  border-radius: 25px;
+  padding: 8px;
+  outline: none;
+  font-size: larger;
+  width: 60%;
+  text-align: center;
+  margin-bottom: 15px;
+  background-color: white; 
+}
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus {
+  border-color: #0056b3;
+}
+.button-enter {
+  border: 2px solid #4075d7;
+  border-radius: 25px;
+  padding: 8px;
+  outline: none;
+  width: 60%;
+  text-align: center;
+  background-color: #4075d7;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+.button-enter:hover {
+  background-color: #0056b3;
+}
+.button-delete {
+  border: 2px solid #d74040;
+  border-radius: 25px;
+  padding: 8px;
+  outline: none;
+  width: 60%;
+  text-align: center;
+  background-color: #d74040;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}  
+.button-delete:hover {
+  background-color: #b30000;
+}
+.button-return {
+  border: 2px solid #525252;
+  border-radius: 25px;
+  padding: 8px;
+  outline: none;
+  width: 60%;
+  text-align: center;
+  background-color: #525252;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}  
+.button-return:hover {
+  background-color: #3B3B3B;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}  
+.slider {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #ccc;
+  position: fixed;
+  background-color: white;
+  top : 80px; 
+}
+.slider button {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.slider button:focus { outline: none; }
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: #4075d7;
+  transition: left 0.3s;
+}
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}  
+.score-inputs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.score-inputs input {
+  border: 2px solid #4075d7;
+  border-radius: 25px;
+  padding: 8px;
+  outline: none;
+  font-size: larger;
+  width: 100px;
+  background-color: white;
+  text-align: center;
+}
+.score-select{
+  border: 2px solid #4075d7;
+  border-radius: 25px;
+  padding: 8px;
+  font-size: larger;
+  width: 120px;
+  background-color: white;
+  text-align-last: center;
+  margin-bottom: 15px;
+  outline: none;
+  -webkit-appearance: none;  
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+#score-select1 {
+    border: 2px solid #4075d7; 
+    color: #4075d7;
+}
+#score-select2 {
+    border: 2px solid #b30000; 
+    color: #b30000;
+}
+input:disabled {
+  color: black;
+  -webkit-text-fill-color: black;
+  opacity: 1;
+}
+.bottom-section {
+  background-color: white;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer-images {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer-images img {
+  width: 60px; 
+  height: auto;
+}

@@ -31,9 +31,6 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   }
 });
 
-document.getElementById('modal-signup-btn').addEventListener('click', (e) => {
-  e.preventDefault();
-  document.getElementById('modal-signup-box').style.display = 'flex';
+document.getElementById('signup-btn').addEventListener('click', (e) => {
+  window.location.href = "inscription";
 });
-
-document.getElementById('modal-close-btn').addEventListener('click', () => document.getElementById('modal-signup-box').style.display = 'none');

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBCBet</title>
+    <link rel="stylesheet" href="ressources/css/inscription.css">
+    <script type="text/javascript" src="https://unpkg.com/parse/dist/parse.min.js"></script>
+</head>
+<body>  
+    <div class="top-section" >
+        <div class="top-section-content">
+            <img src="./ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
+            <a href class="signin-btn" id="signin-btn">Se connecter</a>
+        </div>
+        <div class="fade-top"></div>
+    </div>
+
+    <div class="blank-1"></div>
+    <div class="blank-1"></div>
+
+    <div class="central-section" id="central-section-modifygame" style="display: block;">
+        <!-- Equipe -->
+        <label for="team">Equipe :</label><br>
+        <select id="team" name="team">
+            <option value="">Choisir l'équipe</option>
+            <option value="SM1">SM1</option>
+            <option value="SM2">SM2</option>
+            <option value="SM3">SM3</option>
+            <option value="SF">SF</option>
+            <option value="U18M">U18M</option>
+            <option value="U18F">U18F</option>
+            <option value="U15M">U15M</option>
+            <option value="U15F">U15F</option>
+        </select>
+        <div class="blank-2"></div>
+        
+        <!-- Adversaire -->
+        <label for="adversaire">Adversaire :</label><br>
+        <input type="text" id="adversaire" name="adversaire" placeholder="Adversaire">
+        <div class="blank-2"></div>
+        
+        <!-- Date -->
+        <label for="date">Date :</label><br>
+        <input type="date" id="date" name="date">
+        <div class="blank-2"></div>
+        
+        <!-- Heure -->
+        <label for="time">Heure :</label><br>
+        <input type="time" id="time" name="heure">
+        <div class="blank-2"></div>
+
+        <button type="button" class="button-enter" id="button-enter-save" >Enregistrer</button>
+        <div class="blank-2"></div>
+        <button type="button" class="button-delete" id="button-delete" >Supprimer</button> 
+    </div>
+
+    <div class="central-section" id="central-section-generatewinner" style="display: none;">
+        <label for="title"> Score Final ?</label><br>
+        <div class="score-container">
+            <div class="score-inputs">
+                <select class="score-select" id="score-select1"></select>
+                <select class="score-select" id="score-select2"></select>
+            </div>
+        </div>
+        <div class="blank-2"></div>
+        
+        <!-- Gagnant -->
+        <label for="gagnant">Gagnant :</label><br>
+        <input type="text" id="gagnant-text" name="gagnant" disabled>
+        <div id="nb-bet-text"></div>
+        <div class="blank-2"></div>
+        
+        <button type="button" class="button-enter" id="button-enter-generate" >Générer le gagnant</button>
+        <div class="blank-2"></div>
+        <button type="button" class="button-return" id="button-return" >Retour</button>
+    </div>
+
+    <div class="blank-1"></div>
+    <!--
+    <div class="bottom-section">
+        <div class="footer-images">
+            <img src="ressources/image/exalliance.png" alt="Exalliance">
+            <img src="ressources/image/its.png" alt="ITS">
+            <img src="ressources/image/promocash.png" alt="Promocash">
+            <img src="ressources/image/sgof.png" alt="SGOF">
+            <img src="ressources/image/sovec.jpg" alt="Sovec">
+            <img src="ressources/image/technichauffe.png" alt="Technichauffe">
+        </div>
+    </div>
+    -->
+    <script src="ressources/js/inscription.js"></script> 
+</body>
+</html>
