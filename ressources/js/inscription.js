@@ -69,7 +69,7 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
 
   try {
     await user.signUp();
-    window.location.href = "connexion?registered=true";
+    window.location.href = "connexion.html";
   } catch (error) {
     console.error("Error while registering user:", error.message);
   }

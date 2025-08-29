@@ -14,7 +14,7 @@ async function securePageLoad(page) {
     console.log("Access granted to", page);
   } catch (error) {
     console.error("Access denied:", error.message);
-    window.location.href = "connexion";
+    window.location.href = "connexion.html";
   }
 }
 
@@ -182,7 +182,7 @@ document.getElementById('modal-close-btn').addEventListener('click', () => docum
 document.getElementById('modal-logout-btn').addEventListener('click', async () => {
   try{
     await Parse.User.logOut();
-    window.location.href = 'connexion';
+    window.location.href = 'connexion.html';
   } catch (error) {
     console.error('Error logging out:', error);
   }
