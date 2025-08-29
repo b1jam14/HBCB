@@ -11,73 +11,41 @@
     <div class="top-section" >
         <div class="top-section-content">
             <img src="./ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
-            <a href class="signin-btn" id="signin-btn">Se connecter</a>
+            <a href="connexion" href class="signin-btn" id="signin-btn">Se connecter</a>
         </div>
         <div class="fade-top"></div>
     </div>
 
     <div class="blank-1"></div>
-    <div class="blank-1"></div>
 
     <div class="central-section" id="central-section-modifygame" style="display: block;">
-        <!-- Equipe -->
-        <label for="team">Equipe :</label><br>
-        <select id="team" name="team">
-            <option value="">Choisir l'équipe</option>
-            <option value="SM1">SM1</option>
-            <option value="SM2">SM2</option>
-            <option value="SM3">SM3</option>
-            <option value="SF">SF</option>
-            <option value="U18M">U18M</option>
-            <option value="U18F">U18F</option>
-            <option value="U15M">U15M</option>
-            <option value="U15F">U15F</option>
-        </select>
-        <div class="blank-2"></div>
         
-        <!-- Adversaire -->
-        <label for="adversaire">Adversaire :</label><br>
-        <input type="text" id="adversaire" name="adversaire" placeholder="Adversaire">
+        <h1>HBCBet</h1>
+        <h2>Inscrits toi pour parier sur les matchs du HBCB !</h2>
+
+        <label for="firstname">Prénom :</label><br>
+        <input type="text" id="firstname-input" name="firstname-input" placeholder="Prénom">
         <div class="blank-2"></div>
-        
-        <!-- Date -->
-        <label for="date">Date :</label><br>
+        <label for="lastname">Nom :</label><br>
+        <input type="text" id="lastname-input" name="lastname-input" placeholder="Nom">
+        <div class="blank-2"></div>
+        <label for="email" id="email-label">Courriel :</label><br>
+        <input type="email" id="email-input" name="email-input" placeholder="Courriel" required>
+        <div class="blank-2"></div>
+        <label for="password" id="password-label">Mot de passe :</label><br>
+        <input type="password" id="password-input" name="password-input" placeholder="Mot de passe">
+        <div class="blank-2"></div>
+        <label for="date" id="date-label">Date de naissance:</label><br>
         <input type="date" id="date" name="date">
         <div class="blank-2"></div>
-        
-        <!-- Heure -->
-        <label for="time">Heure :</label><br>
-        <input type="time" id="time" name="heure">
-        <div class="blank-2"></div>
 
-        <button type="button" class="button-enter" id="button-enter-save" >Enregistrer</button>
-        <div class="blank-2"></div>
-        <button type="button" class="button-delete" id="button-delete" >Supprimer</button> 
+        <!-- Condition général -->
+
+        <button type="button" class="button-enter" id="button-enter-save" >S'inscrire</button>
+        
+        <div class="blank-1"></div>
     </div>
-
-    <div class="central-section" id="central-section-generatewinner" style="display: none;">
-        <label for="title"> Score Final ?</label><br>
-        <div class="score-container">
-            <div class="score-inputs">
-                <select class="score-select" id="score-select1"></select>
-                <select class="score-select" id="score-select2"></select>
-            </div>
-        </div>
-        <div class="blank-2"></div>
-        
-        <!-- Gagnant -->
-        <label for="gagnant">Gagnant :</label><br>
-        <input type="text" id="gagnant-text" name="gagnant" disabled>
-        <div id="nb-bet-text"></div>
-        <div class="blank-2"></div>
-        
-        <button type="button" class="button-enter" id="button-enter-generate" >Générer le gagnant</button>
-        <div class="blank-2"></div>
-        <button type="button" class="button-return" id="button-return" >Retour</button>
-    </div>
-
-    <div class="blank-1"></div>
-    <!--
+    
     <div class="bottom-section">
         <div class="footer-images">
             <img src="ressources/image/exalliance.png" alt="Exalliance">
@@ -88,7 +56,7 @@
             <img src="ressources/image/technichauffe.png" alt="Technichauffe">
         </div>
     </div>
-    -->
+    
     <script src="ressources/js/inscription.js"></script> 
 </body>
 </html>

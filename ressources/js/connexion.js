@@ -12,18 +12,25 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
   try {
     const user = await Parse.User.logIn(courriel, password);
-    console.log("Login successful for:", user.get("username"));
+    if(!user.get("emailVerified")){
+      document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
+      await Parse.User.logOut();
+      return;
+    }else {
+      console.log("Login successful for:", user.get("username"));
 
-    // Call the secure Cloud Function to get the page
-    const page = await Parse.Cloud.run("getUserRolePage");
-    console.log("Redirecting to:", page);
+      // Call the secure Cloud Function to get the page
+      const page = await Parse.Cloud.run("getUserRolePage");
+      console.log("Redirecting to:", page);
 
-    // Redirect based on Cloud Function response
-    if (page === "/admin") {
-      window.location.href = "admin";
-    } else {
-      window.location.href = page + "?sponsors=true";
+      // Redirect based on Cloud Function response
+      if (page === "/admin") {
+        window.location.href = "admin";
+      } else {
+        window.location.href = page + "?sponsors=true";
+      }
     }
+    
 
   } catch (error) {
     document.getElementById('login-error').textContent = "Courriel ou mot de passe incorrect.";

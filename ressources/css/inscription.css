@@ -92,6 +92,8 @@ label {
 input[type="text"],
 input[type="date"],
 input[type="time"],
+input[type="email"],
+input[type="password"],
 select {
   border: 2px solid #4075d7;
   border-radius: 25px;
@@ -106,6 +108,8 @@ select {
 input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="time"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
 select:focus {
   border-color: #0056b3;
 }
