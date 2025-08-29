@@ -64,6 +64,11 @@ document.getElementById('button-bet').addEventListener('click', async function (
   const bestscorer = document.getElementById('bestscorer').value;
   const matchId = getQueryParam('matchId');
 
+  if (isNaN(scoreteam1) || isNaN(scoreteam2)) {
+    alert('Les scores doivent être des nombres valides.');
+    return;
+  }
+
   if (scoreteam1 === undefined || scoreteam2 === undefined || !bestscorer || !matchId) {
     alert('Merci de remplir tous les champs.');
     return;
@@ -119,13 +124,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 3️⃣ Optionally, fetch the user's bet if needed
     const Bets = Parse.Object.extend("Bets");
     const betQuery = new Parse.Query(Bets);
-    betQuery.equalTo("match", matchId);
-    betQuery.equalTo("user", Parse.User.current());
+    betQuery.equalTo("matchId", match);
+    betQuery.equalTo("userId", Parse.User.current());
     const userBet = await betQuery.first();
+
+    console.log("Pari utilisateur récupéré :", userBet);
       
 
     if (userBet) {
       const winnerValue = userBet.get("winner");
+      console.log("Valeur du gagnant récupérée :", winnerValue);
 
       // Mettre à jour les couleurs des boutons selon le gagnant
       if (winnerValue === 'team1') {

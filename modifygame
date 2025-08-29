@@ -28,7 +28,7 @@
 
     <div class="slider">
         <button id="slider-edit-btn">Modifier le match</button>
-        <button id="slider-generate-btn" disabled>Générer le gagnant</button>
+        <button id="slider-generate-btn">Générer le gagnant</button>
         <div class="indicator" id="indicator"></div>
     </div>
 

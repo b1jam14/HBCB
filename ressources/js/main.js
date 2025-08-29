@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const Games = Parse.Object.extend("Games");
   const query = new Parse.Query(Games);
   query.greaterThanOrEqualTo("date", new Date());
+  query.doesNotExist("betWinner");
   query.ascending("date"); 
 
   try {

@@ -16,7 +16,6 @@ async function securePageLoad(page) {
   }
 }
 
-const userId = sessionStorage.getItem('userId');
 const matchId = getQueryParam('matchId');
 
 
@@ -51,10 +50,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     
       query.equalTo("objectId", matchId);
     
-      const matches = await query.find();
+      const matchInfo = await query.first();
     
-      if (matches.length > 0) {
-        const matchInfo = matches[0];
+      if (matchInfo) {
     
         document.getElementById('team').value = matchInfo.get("team");
         document.getElementById('adversaire').value = matchInfo.get("adversaire");
@@ -70,15 +68,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         const utcMinutes = String(matchDate.getUTCMinutes()).padStart(2, '0');
         document.getElementById('time').value = `${utcHours}:${utcMinutes}`;
     
-        const betwinner = matchInfo.get("betwinner");
+        const betwinner = matchInfo.get("betWinner");
+
+        const result = await Parse.Cloud.run("getValideNTotalBet", {
+          matchId,
+          scoreteam1: matchInfo.get("bischoScore"),
+          scoreteam2: matchInfo.get("adversaireScore")
+        });
+
         if (betwinner) {
+          const betwinnerPointer = {
+            __type: "Pointer",
+            className: "_User",
+            objectId: betwinner.id
+          }
           const score = matchInfo.get("score") || {};
-          document.getElementById('score-select1').value = score.home ?? '';
-          document.getElementById('score-select2').value = score.away ?? '';
-          document.getElementById('gagnant').value = betwinner;
+          document.getElementById('score-select1').value = matchInfo.get("bischoScore");
+          document.getElementById('score-select2').value = matchInfo.get("adversaireScore");
+          document.getElementById('gagnant-text').value = await Parse.Cloud.run("getUsername", { betwinner: betwinnerPointer });
+          document.getElementById("nb-bet-text").textContent = `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
           document.getElementById('score-select1').disabled = true;
           document.getElementById('score-select2').disabled = true;
-          document.getElementById('button-enter-save').disabled = true;
+          document.getElementById('button-enter-generate').disabled = true;
+        }
+        else{
+          const Bets = Parse.Object.extend("Bets");
+          const betsQuery = new Parse.Query(Bets);
+          const Match = Parse.Object.extend("Games"); // Assuming your Match class is named "Match"
+          // Create a pointer to the specific match
+          const matchPointer = new Match();
+          matchPointer.id = matchId;  // Set the matchId as the pointer to the Match object
+
+          betsQuery.equalTo("matchId", matchPointer);  // Query bets for the specific match (pointer)
+          const betsForMatch = await betsQuery.find();
+          
+          document.getElementById("nb-bet-text").textContent = "Nombre de pari(s) en cours : " + betsForMatch.length;
         }
       } else {
         console.error("Match not found");
@@ -87,6 +111,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (err) {
       console.error('Erreur Parse:', err);
     }  
+  }else{
+    document.getElementById('slider-generate-btn').disable = true;
   }
 })
 
@@ -130,6 +156,7 @@ document.getElementById('slider-edit-btn').addEventListener('click', () => {
 });
 
 document.getElementById('slider-generate-btn').addEventListener('click', () => {
+  console.log('Generate Winner clicked');
   document.getElementById('indicator').style.left = '50%';
   centralSectionModify.style.display = 'none';
   centralSectionGenerate.style.display = 'block';
@@ -140,8 +167,9 @@ document.getElementById('button-enter-generate').addEventListener('click', async
   e.preventDefault();
 
   const matchId = getQueryParam('matchId');
-  const scoreteam1 = document.getElementById("score-select1").value;
-  const scoreteam2 = document.getElementById("score-select2").value;
+  
+  const scoreteam1 = parseInt(document.getElementById('score-select1').value, 10);
+  const scoreteam2 = parseInt(document.getElementById('score-select2').value, 10);
 
   try {
     const result = await Parse.Cloud.run("generateWinner", {
@@ -150,9 +178,10 @@ document.getElementById('button-enter-generate').addEventListener('click', async
       scoreteam2
     });
 
+    console.log("Winner generated successfully:", result);
     // Afficher les infos
-    document.getElementById("gagnant").value = result.winner;
-    document.getElementById("nb-bet").textContent =
+    document.getElementById("gagnant-text").value = result.winner;
+    document.getElementById("nb-bet-text").textContent =
       `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
 
     console.log("Winner choisi :", result.winner);
