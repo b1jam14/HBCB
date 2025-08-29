@@ -90,6 +90,42 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.2s, border-color 0.2s;
 }
+.match-button.orange {
+    width: 100%;
+    background-color: white;
+    border: 2px solid orange; /* Couleur de la bordure */
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 10px 14px;
+    display: block;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.match-button.red {
+    width: 100%;
+    background-color: white;
+    border: 2px solid #b30000; /* Couleur de la bordure */
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 10px 14px;
+    display: block;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.match-button.green {
+    width: 100%;
+    background-color: white;
+    border: 2px solid green; /* Couleur de la bordure */
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 10px 14px;
+    display: block;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, border-color 0.2s;
+}
 .match-button:hover {
     background-color: #f0f8ff; /* Légère teinte au survol */
     border-color: #1565c0;
@@ -102,15 +138,15 @@ body {
 .match-info {
     text-align: left;
 }
-.teams {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1976d2;
-}
 .match-time {
     font-size: 14px;
     color: #555;
     margin-top: 4px;
+}
+.teams {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1976d2;
 }
 .arrow {
     font-size: 28px;
@@ -120,7 +156,46 @@ body {
     align-items: center;
     justify-content: center;
 }
-  .add-match-btn {
+.teams.green {
+    font-size: 18px;
+    font-weight: 600;
+    color: green;
+}  
+.arrow.green {
+    font-size: 28px; /* GROSSE flèche */
+    color: green;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.teams.red {
+    font-size: 18px;
+    font-weight: 600;
+    color: #b30000;
+}  
+.arrow.red {
+    font-size: 28px; /* GROSSE flèche */
+    color: #b30000;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.teams.orange {
+    font-size: 18px;
+    font-weight: 600;
+    color: orange;
+}  
+.arrow.orange {
+    font-size: 28px; /* GROSSE flèche */
+    color: orange;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-match-btn {
     border: 2px solid #4075d7; 
     border-radius: 25px;       
     padding: 8px;              

@@ -31,23 +31,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   //Display matches
   const matchContainer = document.getElementById('match-container');
+  const Games = Parse.Object.extend("Games");
+  const query = new Parse.Query(Games);
+  query.ascending("date");
 
   try {
-    const Games = Parse.Object.extend("Games");
-    const query = new Parse.Query(Games);
-
-    query.ascending("date"); // Sort by date + time automatically
-
     const matches = await query.find();
 
     // Generate HTML
     matches.forEach(match => {
-      const matchDateTime = match.get("date"); // Parse Date object
+      const matchDateTime = match.get("date"); 
+      const now = new Date();
 
+      //A VERIFIER 
+      // Make sure both are in UTC for comparison
+      const diffHours = (matchDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
+
+      const betwinner = match.get("betWinner");
+      
       const matchDiv = document.createElement('div');
       matchDiv.classList.add('match');
 
-      //A VERIFIER 
       // Format date in UTC
       const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
         day: '2-digit',
@@ -57,31 +61,71 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // Format time in UTC
       const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'UTC'
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC'
       });
-      //A VERIFIER ^
+        //A VERIFIER ^
 
-      matchDiv.innerHTML = `
-        <button class="match-button" id="${match.id}">
+      if (betwinner === undefined && diffHours <= 48 && diffHours >= 0) {
+        matchDiv.innerHTML = `
+          <button class="match-button" id="${match.id}">
+            <div class="match-content">
+              <div class="match-info">
+                <div class="teams">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+                <div class="match-time">${formattedDate} - ${formattedTime}</div>
+              </div>
+              <div class="arrow">&gt;</div>
+            </div>
+          </button>
+        `;
+
+        const button = matchDiv.querySelector('.match-button');
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          sessionStorage.setItem('matchId', match.id);
+          window.location.href = 'bet.html?matchId=' + match.id;
+        });
+
+      }else if (diffHours < 0 && diffHours >= -72) {
+        if(!betwinner || betwinner.id === undefined){
+          matchDiv.innerHTML = `
+          <button class="match-button orange" id="${match.id}">
           <div class="match-content">
             <div class="match-info">
-              <div class="teams">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+              <div class="teams orange">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
               <div class="match-time">${formattedDate} - ${formattedTime}</div>
             </div>
-            <div class="arrow">&gt;</div>
+            <div class="arrow orange">&gt;</div>
           </div>
-        </button>
-      `;
-
-      const button = matchDiv.querySelector('.match-button');
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        sessionStorage.setItem('matchId', match.id); //A MODIFIER
-        window.location.href = 'modifygame.html?matchId=' + match.id;
-      });
-
+          </button>
+        `;
+        }else if(betwinner){
+            matchDiv.innerHTML = `
+            <button class="match-button green" id="${match.id}">
+              <div class="match-content">
+                <div class="match-info">
+                  <div class="teams green">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+                  <div class="match-time">${formattedDate} - ${formattedTime}</div>
+                </div>
+                <div class="arrow green">&gt;</div>
+              </div>
+            </button>
+          `;
+        }
+      }else{
+        matchDiv.innerHTML = `
+          <button class="match-button red" id="${match.id}" >
+            <div class="match-content">
+              <div class="match-info">
+                <div class="teams red">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+                <div class="match-time">${formattedDate} - ${formattedTime}</div>
+              </div>
+              <div class="arrow red">&gt;</div>
+            </div>
+          </button>
+        `;
+      }
       matchContainer.appendChild(matchDiv);
     });
 

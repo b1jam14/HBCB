@@ -38,8 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const matchContainer = document.getElementById('match-container');
   const Games = Parse.Object.extend("Games");
   const query = new Parse.Query(Games);
-  query.greaterThanOrEqualTo("date", new Date());
-  query.doesNotExist("betWinner");
   query.ascending("date"); 
 
   try {
@@ -53,28 +51,27 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Make sure both are in UTC for comparison
       const diffHours = (matchDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
 
-      const betwinner = match.get("betwinner");
+      const betwinner = match.get("betWinner");
+      
+      const matchDiv = document.createElement('div');
+      matchDiv.classList.add('match');
+
+      // Format date in UTC
+      const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
+        day: '2-digit',
+        month: '2-digit',
+        timeZone: 'UTC'
+      });
+
+      // Format time in UTC
+      const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC'
+      });
+        //A VERIFIER ^
 
       if (betwinner === undefined && diffHours <= 48 && diffHours >= 0) {
-          const matchDiv = document.createElement('div');
-          matchDiv.classList.add('match');
-
-          // Format date in UTC
-          const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
-              day: '2-digit',
-              month: '2-digit',
-              timeZone: 'UTC'
-          });
-
-          // Format time in UTC
-          const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
-              hour: '2-digit',
-              minute: '2-digit',
-              timeZone: 'UTC'
-          });
-           //A VERIFIER ^
-
-
         matchDiv.innerHTML = `
           <button class="match-button" id="${match.id}">
             <div class="match-content">
@@ -94,8 +91,48 @@ document.addEventListener('DOMContentLoaded', async () => {
           window.location.href = 'bet.html?matchId=' + match.id;
         });
 
-        matchContainer.appendChild(matchDiv);
+      }else if (diffHours < 0 && diffHours >= -72) {
+        if(!betwinner || betwinner.id === undefined){
+          matchDiv.innerHTML = `
+          <button class="match-button orange" id="${match.id}">
+          <div class="match-content">
+            <div class="match-info">
+              <div class="teams orange">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+              <div class="match-time">${formattedDate} - ${formattedTime}</div>
+            </div>
+            <div class="arrow orange">&gt;</div>
+          </div>
+          </button>
+        `;
+
+        }else if(betwinner.id === currentUser.id){
+          matchDiv.innerHTML = `
+          <button class="match-button green" id="${match.id}">
+            <div class="match-content">
+              <div class="match-info">
+                <div class="teams green">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+                <div class="match-time">${formattedDate} - ${formattedTime}</div>
+              </div>
+              <div class="arrow green">&gt;</div>
+            </div>
+          </button>
+        `;
+
+        }else if(betwinner.id !== currentUser.id){
+          matchDiv.innerHTML = `
+          <button class="match-button red" id="${match.id}" >
+            <div class="match-content">
+              <div class="match-info">
+                <div class="teams red">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+                <div class="match-time">${formattedDate} - ${formattedTime}</div>
+              </div>
+              <div class="arrow red">&gt;</div>
+            </div>
+          </button>
+        `;
+        } 
       }
+      matchContainer.appendChild(matchDiv);
     });
 
   } catch (err) {
