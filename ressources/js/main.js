@@ -4,7 +4,7 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 const sponsorsModal = document.getElementById('sponsors-modal');
 const closeSponsorsBtn = document.getElementById('close-sponsors-modal');
 
-closeSponsorsBtn.onclick = () => { sponsorsModal.style.display = 'none'; window.location.href = 'main';}
+closeSponsorsBtn.onclick = () => { sponsorsModal.style.display = 'none'; window.location.href = 'main.html';}
 
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         button.addEventListener('click', (e) => {
           e.preventDefault();
           sessionStorage.setItem('matchId', match.id);
-          window.location.href = 'bet?matchId=' + match.id;
+          window.location.href = 'bet.html?matchId=' + match.id;
         });
 
         matchContainer.appendChild(matchDiv);

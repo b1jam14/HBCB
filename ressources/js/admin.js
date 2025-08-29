@@ -13,7 +13,7 @@ async function securePageLoad(page) {
 
 document.getElementById("add-match-btn").addEventListener('click', (e) => {
   e.preventDefault();
-  window.location.href = 'modifygame?matchId=0';
+  window.location.href = 'modifygame.html?matchId=0';
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       button.addEventListener('click', (e) => {
         e.preventDefault();
         sessionStorage.setItem('matchId', match.id); //A MODIFIER
-        window.location.href = 'modifygame?matchId=' + match.id;
+        window.location.href = 'modifygame.html?matchId=' + match.id;
       });
 
       matchContainer.appendChild(matchDiv);

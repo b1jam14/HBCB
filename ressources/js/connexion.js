@@ -24,8 +24,8 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       console.log("Redirecting to:", page);
 
       // Redirect based on Cloud Function response
-      if (page === "/admin") {
-        window.location.href = "admin";
+      if (page === "/admin.html") {
+        window.location.href = "admin.html";
       } else {
         window.location.href = page + "?sponsors=true";
       }
@@ -39,5 +39,5 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 });
 
 document.getElementById('signup-btn').addEventListener('click', (e) => {
-  window.location.href = "inscription";
+  window.location.href = "inscription.html";
 });

@@ -82,7 +82,7 @@ document.getElementById('button-bet').addEventListener('click', async function (
       bestscorer: bestscorer
     });
 
-    window.location.href = 'main';
+    window.location.href = 'main.html';
 
   } catch (error) {
     console.error("Erreur Cloud Function:", error);
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   } catch (error) {
       console.error("Erreur Parse:", error);
-      //window.location.href = 'main';
+      window.location.href = 'main.html';
   }
 });
 

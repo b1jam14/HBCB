@@ -139,7 +139,7 @@ document.getElementById('button-enter-save').addEventListener('click', async (e)
     });
 
     console.log("Game saved successfully:", result);
-    window.location.href = 'admin';
+    window.location.href = 'admin.html';
   } catch (error) {
     console.error('Erreur Parse:', error);
   }
@@ -195,7 +195,7 @@ document.getElementById('button-delete').addEventListener('click', async (e) => 
   e.preventDefault();
 
   if(getQueryParam('matchId') === '0'){
-    window.location.href = 'admin';
+    window.location.href = 'admin.html';
   }else{
     try {
       const matchId = getQueryParam('matchId');
@@ -203,7 +203,7 @@ document.getElementById('button-delete').addEventListener('click', async (e) => 
       const result = await Parse.Cloud.run("deleteMatchAndBets", { matchId });
     
       console.log(`Match and ${result.deletedBets} bet(s) deleted successfully`);
-      window.location.href = 'admin';
+      window.location.href = 'admin.html';
     
     } catch (error) {
       console.error("Error deleting:", error);
@@ -213,7 +213,7 @@ document.getElementById('button-delete').addEventListener('click', async (e) => 
 
 document.getElementById('button-return').addEventListener('click', (e) => {
   e.preventDefault();
-  window.location.href = 'admin';
+  window.location.href = 'admin.html';
 });
 
 document.getElementById('modal-user-btn').addEventListener('click', (e) => {
