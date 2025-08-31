@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         timeZone: 'UTC'
       });
         //A VERIFIER ^
-
-      if (betwinner === undefined && diffHours <= 48 && diffHours >= 0) {
+      console.log(diffHours);
+      if (betwinner === undefined && diffHours >= 0) {
         matchDiv.innerHTML = `
           <button class="match-button" id="${match.id}">
             <div class="match-content">

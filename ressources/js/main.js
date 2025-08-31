@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const matchContainer = document.getElementById('match-container');
   const Games = Parse.Object.extend("Games");
   const query = new Parse.Query(Games);
-  query.ascending("date"); 
+  query.descending("date");
 
   try {
     const matches = await query.find();
@@ -131,6 +131,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           </button>
         `;
         } 
+
+        const button = matchDiv.querySelector('.match-button');
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          sessionStorage.setItem('matchId', match.id);
+          window.location.href = 'result.html?matchId=' + match.id;
+        });
       }
       matchContainer.appendChild(matchDiv);
     });

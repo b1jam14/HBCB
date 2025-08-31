@@ -130,7 +130,7 @@ body {
 }
 .match-button:hover {
     background-color: #f0f8ff; /* Légère teinte au survol */
-    border-color: #1565c0;
+    
 }
 .match-content {
     display: flex;

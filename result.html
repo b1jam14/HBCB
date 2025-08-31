@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBCBet</title>
+    <link rel="preload" href="./ressources/css/result.css" as="style">
+    <link rel="stylesheet" href="ressources/css/result.css">
+    <script type="text/javascript" src="https://unpkg.com/parse/dist/parse.min.js"></script>
+</head>
+<body>  
+    <div class="top-section" >
+        <div class="top-section-content">
+            <img src="ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
+            <a href class="modal-user" id="modal-user-btn"></a>
+        </div>
+        <div class="fade-top"></div>
+    </div>
+
+    <div id="modal-user-box" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="modal-close-btn" class="modal-close-btn">&times;</span>
+            <h2 id="modal-username-text"></h2>
+            <p><strong>Point :</strong> <span id="modal-point-text"></span></p>
+            <button id="modal-logout-btn">Déconnexion</button>
+            <div class="blank-2"></div>
+        </div>
+    </div>
+
+    <div class="blank-1"></div>
+    
+    <div class="central-section">
+        <h1 id="result-text"></h1>
+        <div class="blank-2"></div>
+        <img id="dynamic-image" style="max-width: 100%; height: auto;">
+        <div class="blank-2"></div>
+        <button type="button" class="button-return" id="button-return" > &lt; Retour</button>
+    </div>
+
+    <div class="blank-1"></div>
+    
+    <footer class="bottom-section">
+        <div class="footer-images">
+            <a href="https://exalliance-finance.fr/" target="_blank"><img src="ressources/image/exalliance.png" alt="Exalliance"></a>
+            <a href="https://www.its-transports.fr/" target="_blank"><img src="ressources/image/its.png" alt="ITS"></a>
+            <a href="https://www.promocash.com/ecommerce/" target="_blank"><img src="ressources/image/promocash.png" alt="Promocash"></a>
+            <a href="https://www.sgofsecurite.fr/" target="_blank"><img src="ressources/image/sgof.png" alt="SGOF"></a>
+            <a href="https://www.sovec-entreprises.fr/" target="_blank"><img src="ressources/image/sovec.jpg" alt="Sovec"></a>
+            <a href="https://www.energitim.eu/" target="_blank"><img src="ressources/image/technichauffe.png" alt="Technichauffe"></a>
+        </div>
+    </footer>
+    
+    <script src="ressources/js/result.js"></script>
+</body>
+</html>
