@@ -22,7 +22,7 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
     document.getElementById('email-label').textContent = "Courriel :";
     document.getElementById('email-label').style.color = "#333";
   } catch (error) {
-    console.error("Error while registering user:", error.message);
+    console.error("Error while registering user email:", error.message);
   }
 
   const password = document.getElementById('password-input').value;
@@ -56,6 +56,13 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
   document.getElementById('date-label').textContent = "Date de naissance:";
   document.getElementById('date-label').style.color = "#333";
 
+  const termsChecked = document.getElementById('terms').checked;
+  if (!termsChecked) {
+    e.preventDefault(); // Empêche l'envoi du formulaire
+    document.querySelector('label[for="terms"]').style.color = "red";
+    return;
+  }
+  console.log("Conditions accepted");
   const firstname = document.getElementById('firstname-input').value;
   const lastname = document.getElementById('lastname-input').value;
   const username = firstname + " " + lastname;
@@ -73,6 +80,6 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
     await user.signUp();
     window.location.href = "connexion.html";
   } catch (error) {
-    console.error("Error while registering user:", error.message);
+    console.error("Error while registering user end:", error.message);
   }
 });

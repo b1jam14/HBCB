@@ -96,6 +96,7 @@ input[type="date"],
 input[type="time"],
 input[type="email"],
 input[type="password"],
+input[type="checkbox"],
 select {
   border: 2px solid #4075d7;
   border-radius: 25px;
@@ -112,9 +113,37 @@ input[type="date"]:focus,
 input[type="time"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
+input[type="checkbox"],
 select:focus {
   border-color: #0056b3;
 }
+
+
+
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;      /* aligne verticalement le texte avec la checkbox */
+  gap: 10px;
+  width: fit-content;       /* largeur adaptée au contenu */
+  
+  background-color: white;
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  margin: 0;
+  white-space: nowrap;      /* empêche le texte de passer à la ligne */
+      /* ajuste la hauteur du texte pour mieux aligner avec la checkbox */
+  cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+             /* empêche la checkbox de rétrécir */
+}
+
+
 .button-enter {
   border: 2px solid #4075d7;
   border-radius: 25px;
