@@ -74,3 +74,33 @@ body {
     width: 60px; 
     height: auto;
   }
+
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 1px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 1px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .rules {
+    color: #4075d7;
+  }
+  p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+  }
