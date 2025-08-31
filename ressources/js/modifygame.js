@@ -85,21 +85,23 @@ document.addEventListener('DOMContentLoaded', async () => {
           const score = matchInfo.get("score") || {};
           document.getElementById('score-select1').value = matchInfo.get("bischoScore");
           document.getElementById('score-select2').value = matchInfo.get("adversaireScore");
+          document.getElementById('bestscorer-text').value = matchInfo.get("bestScorer");
           document.getElementById('gagnant-text').value = await Parse.Cloud.run("getUsername", { betwinner: betwinnerPointer });
           document.getElementById("nb-bet-text").textContent = `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
           document.getElementById('score-select1').disabled = true;
           document.getElementById('score-select2').disabled = true;
+          document.getElementById('bestscorer-text').disabled = true;
           document.getElementById('button-enter-generate').disabled = true;
         }
         else{
           const Bets = Parse.Object.extend("Bets");
           const betsQuery = new Parse.Query(Bets);
-          const Match = Parse.Object.extend("Games"); // Assuming your Match class is named "Match"
-          // Create a pointer to the specific match
+          const Match = Parse.Object.extend("Games");
+          
           const matchPointer = new Match();
-          matchPointer.id = matchId;  // Set the matchId as the pointer to the Match object
+          matchPointer.id = matchId;  
 
-          betsQuery.equalTo("matchId", matchPointer);  // Query bets for the specific match (pointer)
+          betsQuery.equalTo("matchId", matchPointer); 
           const betsForMatch = await betsQuery.find();
           
           document.getElementById("nb-bet-text").textContent = "Nombre de pari(s) en cours : " + betsForMatch.length;
@@ -170,6 +172,7 @@ document.getElementById('button-enter-generate').addEventListener('click', async
   
   const scoreteam1 = parseInt(document.getElementById('score-select1').value, 10);
   const scoreteam2 = parseInt(document.getElementById('score-select2').value, 10);
+  const bestScorer = document.getElementById('bestscorer-text').value;
 
   try {
     const result = await Parse.Cloud.run("generateWinner", {
@@ -177,14 +180,15 @@ document.getElementById('button-enter-generate').addEventListener('click', async
       scoreteam1,
       scoreteam2
     });
+    //document.getElementById("gagnant-text").value = result.winner;
+    //document.getElementById("nb-bet-text").textContent = `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
 
-    console.log("Winner generated successfully:", result);
-    // Afficher les infos
-    document.getElementById("gagnant-text").value = result.winner;
-    document.getElementById("nb-bet-text").textContent =
-      `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
-
-    console.log("Winner choisi :", result.winner);
+    await Parse.Cloud.run("generatePoint", {
+      matchId,
+      bestScorer,
+      scoreteam1,
+      scoreteam2
+    });
   } catch (error) {
     console.error("Erreur Cloud Function:", error);
     alert("Échec de la génération du gagnant.");
