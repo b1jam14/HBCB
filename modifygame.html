@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,14 @@
             <img src="./ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
             <a href class="modal-user" id="modal-user-btn"></a>
         </div>
-        <div class="fade-top"></div>
+        <div class="slider">
+            <div class="fade-top"></div>
+            <div class="buttons"> 
+                <button id="slider-edit-btn">Modifier le match</button>
+                <button id="slider-generate-btn">Génerer le gagnant</button>
+                <div class="indicator" id="indicator"></div>
+            </div>
+        </div>
     </div>
     
     <div id="modal-user-box" class="modal" style="display: none;">
@@ -24,12 +31,6 @@
             <button id="modal-logout-btn">Déconnexion</button>
             <div class="blank-2"></div>
         </div>
-    </div>
-
-    <div class="slider">
-        <button id="slider-edit-btn">Modifier le match</button>
-        <button id="slider-generate-btn">Générer le gagnant</button>
-        <div class="indicator" id="indicator"></div>
     </div>
 
     <div class="blank-1"></div>

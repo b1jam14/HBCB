@@ -91,6 +91,7 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.2s, border-color 0.2s;
+    box-sizing: border-box;
 }
 .match-button.orange {
     width: 100%;
@@ -157,7 +158,39 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}  
+}
+
+
+.classement {
+    width: 100%;
+    background-color: white;
+    border: 2px solid #1976d2; /* Couleur de la bordure */
+    border-radius: 8px;
+    margin: 8px auto;
+    padding: 1px 10px;
+    display: block;
+    box-sizing: border-box;
+}
+.classement-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.classement-user {
+    font-size: 18px;
+    color: #1976d2;
+} 
+.classement-point {
+    font-size: 20px; /* GROSSE flèche */
+    color: #1976d2;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+
 .teams.green {
     font-size: 18px;
     font-weight: 600;
@@ -197,6 +230,37 @@ body {
     align-items: center;
     justify-content: center;
 }
+.slider {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    flex-direction: column;
+    border-bottom: 2px solid #ccc;
+    position: fixed;
+    background-color: white;
+    
+  }
+  .slider button {
+    flex: 1;
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .slider button:focus { outline: none; }
+  .indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: #4075d7;
+    transition: left 0.3s;
+  }
+  .buttons{
+    display: flex;       /* side by side */
+  height: 50px;
+  }
 .bottom-section {
     background-color: white;
     color: white;

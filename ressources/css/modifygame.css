@@ -172,10 +172,10 @@ form {
   display: flex;
   width: 100%;
   height: 50px;
+  flex-direction: column;
   border-bottom: 2px solid #ccc;
   position: fixed;
   background-color: white;
-  top : 80px; 
 }
 .slider button {
   flex: 1;
@@ -193,6 +193,9 @@ form {
   height: 3px;
   background: #4075d7;
   transition: left 0.3s;
+} .buttons{
+  display: flex;       /* side by side */
+height: 50px;
 }
 .score-container {
   display: flex;

@@ -154,15 +154,12 @@ document.getElementById('slider-edit-btn').addEventListener('click', () => {
   document.getElementById('indicator').style.left = '0';
   centralSectionGenerate.style.display = 'none';
   centralSectionModify.style.display = 'block'; 
-  centralSectionModify.scrollIntoView({ behavior: 'smooth' });
 });
 
 document.getElementById('slider-generate-btn').addEventListener('click', () => {
-  console.log('Generate Winner clicked');
   document.getElementById('indicator').style.left = '50%';
   centralSectionModify.style.display = 'none';
   centralSectionGenerate.style.display = 'block';
-  centralSectionGenerate.scrollIntoView({ behavior: 'smooth' });
 });
 
 document.getElementById('button-enter-generate').addEventListener('click', async (e) => {
@@ -180,8 +177,8 @@ document.getElementById('button-enter-generate').addEventListener('click', async
       scoreteam1,
       scoreteam2
     });
-    //document.getElementById("gagnant-text").value = result.winner;
-    //document.getElementById("nb-bet-text").textContent = `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
+    document.getElementById("gagnant-text").value = result.winner;
+    document.getElementById("nb-bet-text").textContent = `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
 
     await Parse.Cloud.run("generatePoint", {
       matchId,

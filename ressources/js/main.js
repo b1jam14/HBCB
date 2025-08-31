@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const query = new Parse.Query(Games);
   query.descending("date");
 
+  const User = Parse.Object.extend("_User");
+  const userQuery = new Parse.Query(User);
+  userQuery.descending("point");
+
   try {
     const matches = await query.find();
 
@@ -142,10 +146,61 @@ document.addEventListener('DOMContentLoaded', async () => {
       matchContainer.appendChild(matchDiv);
     });
 
+    const users = await userQuery.find();
+    const classementContainer = document.getElementById('classement-container');
+
+    users.forEach((user, index) => {
+      const username = user.get("firstName") + " " + user.get("lastName").charAt(0) + ".";
+      const userDiv = document.createElement('div');
+      userDiv.classList.add('classement-item');
+
+      let rankDisplay = '';
+      if (index === 0) {
+      rankDisplay = '🥇'; // U+1F947
+      } else if (index === 1) {
+      rankDisplay = '🥈'; // U+1F948
+      } else if (index === 2) {
+      rankDisplay = '🥉'; // U+1F949
+      } else {
+      rankDisplay = index + 1 + "."; // Display rank number for others
+      }
+
+      userDiv.innerHTML = `
+      <div class="classement">
+      <div class="classement-content">
+        <div class="classement-user">${rankDisplay} ${username}</div>
+        <div class="classement-point">${user.get('point')}</div>
+      </div>
+      </div>
+      `;
+
+      // Apply font-weight: 600 to the current user
+      if (user.id === Parse.User.current().id) {
+      userDiv.querySelector('.classement-user').style.fontWeight = '600';
+      }
+
+      classementContainer.appendChild(userDiv);
+    });
+
   } catch (err) {
     console.error('Erreur Parse:', err);
   }
 })
+
+const centralSectionBet = document.getElementById('central-section-bet');
+const centralSectionClassement = document.getElementById('central-section-classement');
+
+document.getElementById('slider-bet-btn').addEventListener('click', () => {
+  document.getElementById('indicator').style.left = '0';
+  centralSectionClassement.style.display = 'none';
+  centralSectionBet.style.display = 'block'; 
+});
+
+document.getElementById('slider-classement-btn').addEventListener('click', () => {
+  document.getElementById('indicator').style.left = '50%';
+  centralSectionBet.style.display = 'none';
+  centralSectionClassement.style.display = 'block';
+});
 
 document.getElementById('modal-user-btn').addEventListener('click', (e) => {
   e.preventDefault();

@@ -61,6 +61,8 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
   const username = firstname + " " + lastname;
 
   const user = new Parse.User();
+  user.set("firstName", firstname);
+  user.set("lastName", lastname);
   user.set("username", username);
   user.set("password", password);
   user.set("email", email);

@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HBCBet</title>
-    <link rel="preload" href="./ressources/css/main.css" as="style">
     <link rel="stylesheet" href="./ressources/css/main.css">
     <script type="text/javascript" src="https://unpkg.com/parse/dist/parse.min.js"></script>
-    <script>
-        Parse.initialize("dsosX49CI2Sb3fAskvraQl4zuSUsqmGr46cKNTKJ", "iHTYhrd7UsGulkqoyppRb1kemD4Vl26ti7GxJn0S");
-        Parse.serverURL = "https://parseapi.back4app.com/";
-    </script> 
 </head>
 <body>  
     <div class="top-section" >
@@ -18,7 +13,14 @@
             <img src="./ressources/image/logo.png" alt="Logo" style="height: 70%; width: auto;">
             <a href class="modal-user" id="modal-user-btn"></a>
         </div>
-        <div class="fade-top"></div>
+        <div class="slider">
+            <div class="fade-top"></div>
+            <div class="buttons"> 
+                <button id="slider-bet-btn">Paris</button>
+                <button id="slider-classement-btn">Classement</button>
+                <div class="indicator" id="indicator"></div>
+            </div>
+        </div>
     </div>
     <!-- Fenêtre modale cachée -->
     <div id="modal-user-box" class="modal" style="display: none;">
@@ -30,6 +32,10 @@
             <div class="blank-2"></div>
         </div>
     </div>
+
+    <div class="blank-2"></div>
+    <div class="blank-2"></div>
+    <div class="blank-1"></div>
 
     <div id="sponsors-modal" class="modal" style="display: none;">
         <div class="modal-content">
@@ -45,11 +51,15 @@
             </div>
         </div>
     </div>
-
-    <div class="blank-1"></div>
-    <div class="central-section">
+    
+    <div class="central-section" id="central-section-bet" style="display: block;">
         <h1>Bienvenue</h1>
         <div id="match-container"></div>
+    </div>
+
+    <div class="central-section" id="central-section-classement" style="display: none;">
+        <h1>Classement</h1>
+        <div id="classement-container"></div>
     </div>
 
     <div class="blank-1"></div>
