@@ -243,8 +243,8 @@ input:disabled {
   opacity: 1;
 }
 #dynamic-image {
-  border-radius: 50px;
-  border: 2px solid #4075d7;
+  border-radius: 20px;
+  
 }
 .bottom-section {
   background-color: white;

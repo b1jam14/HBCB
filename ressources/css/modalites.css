@@ -30,14 +30,16 @@ body {
 
 
 
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 1px 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
+.container {
+  max-width: 800px;
+  width: 95%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 1px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
   h1, h2 {
     color: #4075d7;
   }

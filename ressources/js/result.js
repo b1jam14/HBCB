@@ -44,14 +44,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const betWinner = matchInfo.get("betWinner");
         if (betWinner) {
           if (betWinner.id === currentUser.id) {
-            document.getElementById('result-text').textContent = "Bravo vous êtes le gagnant!";
+            document.getElementById('result-text').textContent = "Bravo!";
+            document.getElementById('result-text-2').textContent = "Vous êtes le gagnant 🏆";
             document.getElementById('dynamic-image').src = "ressources/image/winning.png";
           } else {
-            document.getElementById('result-text').textContent = "Désolé, vous avez perdu.";
+            document.getElementById('result-text').textContent = "Perdu !";
+            document.getElementById('result-text-2').textContent = "Meilleure chance la prochaine fois ";
             document.getElementById('dynamic-image').src = "ressources/image/losing.png";
           }
         } else {
-          document.getElementById('result-text').textContent = "En attente des résultats.";
+          document.getElementById('result-text-2').textContent = "En attente des résultats.";
           document.getElementById('dynamic-image').src = "ressources/image/pending.png";
         }
       }
