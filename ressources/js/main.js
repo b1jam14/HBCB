@@ -4,7 +4,7 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 const sponsorsModal = document.getElementById('sponsors-modal');
 const closeSponsorsBtn = document.getElementById('close-sponsors-modal');
 
-closeSponsorsBtn.onclick = () => { sponsorsModal.style.display = 'none'; window.location.href = 'main.html';}
+closeSponsorsBtn.onclick = () => { sponsorsModal.style.display = 'none';}
 
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -21,7 +21,49 @@ async function securePageLoad(page) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  if (getQueryParam('sponsors') === 'true') document.getElementById('sponsors-modal').style.display = 'flex';
+  const hasVisited = sessionStorage.getItem("visited");
+  if(!hasVisited){ 
+    document.getElementById('sponsors-modal').style.display = 'flex';
+    const randomNumber = Math.floor(Math.random() * 3) + 1;
+    if (randomNumber === 1) {
+      document.querySelector('.sponsors').innerHTML = `
+        <a href="https://exalliance-finance.fr/" target="_blank">
+          <img src="ressources/image/exalliance.png" alt="Exalliance">
+        </a>
+      `;
+    } else if (randomNumber === 2) {
+      document.querySelector('.sponsors').innerHTML = `
+        <a href="https://www.its-transports.fr/" target="_blank">
+          <img src="ressources/image/its.png" alt="ITS">
+        </a>
+      `;
+    } else if (randomNumber === 3) {
+      document.querySelector('.sponsors').innerHTML = `
+        <a href="https://www.promocash.com/ecommerce/" target="_blank">
+          <img src="ressources/image/promocash.png" alt="Promocash">
+        </a>
+      `;
+    } else if (randomNumber === 4) {
+      document.querySelector('.sponsors').innerHTML = `
+        <a href="https://www.sgofsecurite.fr/" target="_blank">
+          <img src="ressources/image/sgof.png" alt="SGOF">
+        </a>
+      `;
+    } else if (randomNumber === 5) {
+      document.querySelector('.sponsors').innerHTML = `
+        <a href="https://www.sovec-entreprises.fr/" target="_blank">
+          <img src="ressources/image/sovec.jpg" alt="Sovec">
+        </a>
+      `;
+    } else if (randomNumber === 6) {
+      document.querySelector('.sponsors').innerHTML = `
+        <a href="https://www.energitim.eu/" target="_blank">
+          <img src="ressources/image/technichauffe.png" alt="Technichauffe">
+        </a>
+      `;
+    }
+    sessionStorage.setItem("visited", "true");
+  }
   
   securePageLoad(window.location.pathname);
 

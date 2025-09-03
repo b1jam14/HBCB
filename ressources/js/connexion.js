@@ -27,7 +27,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       if (page === "/admin.html") {
         window.location.href = "admin.html";
       } else {
-        window.location.href = page + "?sponsors=true";
+        window.location.href = page ;
       }
     }
     

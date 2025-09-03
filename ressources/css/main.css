@@ -315,8 +315,8 @@ body {
     align-items: center;
 }
 .sponsors img {
-    width: 100px;         /* adjust size */
+           /* adjust size */
     height: auto;
-    flex: 0 1 30%;        /* each image takes ~30% of row, 3 per row */
-    max-width: 120px;     /* optional max width */
+          /* each image takes ~30% of row, 3 per row */
+    max-width: 320px;     /* optional max width */
 }
