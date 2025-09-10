@@ -12,11 +12,12 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
   try {
     const user = await Parse.User.logIn(courriel, password);
+    /*
     if(!user.get("emailVerified")){
       document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
       await Parse.User.logOut();
       return;
-    }else {
+    }else {*/
       console.log("Login successful for:", user.get("username"));
 
       // Call the secure Cloud Function to get the page
@@ -29,7 +30,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       } else {
         window.location.href = page ;
       }
-    }
+   // }
     
 
   } catch (error) {
