@@ -76,6 +76,11 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
   user.set("birthDate", date);
   user.set("role", "user");
 
+  const acl = new Parse.ACL();
+  acl.setPublicReadAccess(true); // everyone can read
+  acl.setWriteAccess(user.id, true); // only this user can write
+  user.setACL(acl);
+
   try {
     await user.signUp();
     await Parse.User.logOut();

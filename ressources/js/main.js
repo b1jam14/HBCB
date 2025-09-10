@@ -189,7 +189,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const users = await userQuery.find();
     const classementContainer = document.getElementById('classement-container');
 
+    console.log(users);
+
     users.forEach((user, index) => {
+      console.log(user.get("firstName") + " " + user.get("lastName") + " - Points: " + user.get("point"));
       const username = user.get("firstName") + " " + user.get("lastName").charAt(0) + ".";
       const userDiv = document.createElement('div');
       userDiv.classList.add('classement-item');
