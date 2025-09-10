@@ -78,6 +78,7 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
 
   try {
     await user.signUp();
+    await Parse.User.logOut();
     window.location.href = "connexion.html";
   } catch (error) {
     console.error("Error while registering user end:", error.message);
