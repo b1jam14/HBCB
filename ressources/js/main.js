@@ -24,7 +24,7 @@ const sponsors = [
   { name: "Regma", link: "#", img: "ressources/image/regma.png.webp" },
   { name: "Routier", link: "#", img: "ressources/image/routier.jpg.webp" },
   { name: "Securis Groupe", link: "#", img: "ressources/image/securisgroupe.png.webp" },
-  { name: "SGOF", link: "#", img: "ressources/image/sgofpng.webp" },
+  { name: "SGOF", link: "#", img: "ressources/image/sgof.png.webp" },
   { name: "Siehr", link: "#", img: "ressources/image/siehr.png.webp" },
   { name: "SMG Groupe", link: "#", img: "ressources/image/smggroupe.png.webp" },
   { name: "Sovec", link: "#", img: "ressources/image/sovec.jpg.webp" },
