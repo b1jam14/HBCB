@@ -78,7 +78,7 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
 
   const acl = new Parse.ACL();
   acl.setPublicReadAccess(true); // everyone can read
-  acl.setWriteAccess(user.id, true); // only this user can write
+ // acl.setWriteAccess(user.id, true); // only this user can write
   user.setACL(acl);
 
   try {
