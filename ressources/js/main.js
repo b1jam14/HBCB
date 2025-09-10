@@ -4,6 +4,34 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 const sponsorsModal = document.getElementById('sponsors-modal');
 const closeSponsorsBtn = document.getElementById('close-sponsors-modal');
 
+const sponsors = [
+  { name: "AXA", link: "#", img: "ressources/image/axa.png.webp" },
+  { name: "Caisse d'Épargne", link: "#", img: "ressources/image/caisse-depargne.png.webp" },
+  { name: "CEA", link: "#", img: "ressources/image/CEA.png.webp" },
+  { name: "Ceros", link: "#", img: "ressources/image/ceros.png.webp" },
+  { name: "Dietrich", link: "#", img: "ressources/image/dietrich.jpg" },
+  { name: "Evalit", link: "#", img: "ressources/image/evalit.png.webp" },
+  { name: "Exalliance", link: "#", img: "ressources/image/exalliance.jpg.webp" },
+  { name: "Immo Laforêt", link: "#", img: "ressources/image/immolaforet.png.webp" },
+  { name: "ITS", link: "#", img: "ressources/image/its.png" },
+  { name: "Leclerc", link: "#", img: "ressources/image/leclrec.png.webp" },
+  { name: "McDonald's", link: "#", img: "ressources/image/macdo.png.webp" },
+  { name: "MD Boissons", link: "#", img: "ressources/image/mdboissons.png.webp" },
+  { name: "MyJobest", link: "#", img: "ressources/image/myjobest.png.webp" },
+  { name: "L'Oeil", link: "#", img: "ressources/image/oeil.png.webp" },
+  { name: "Points", link: "#", img: "ressources/image/points.jpg.webp" },
+  { name: "Promocash", link: "#", img: "ressources/image/promocash.png" },
+  { name: "Regma", link: "#", img: "ressources/image/regma.png.webp" },
+  { name: "Routier", link: "#", img: "ressources/image/routier.jpg.webp" },
+  { name: "Securis Groupe", link: "#", img: "ressources/image/securisgroupe.png.webp" },
+  { name: "SGOF", link: "#", img: "ressources/image/sgofpng.webp" },
+  { name: "Siehr", link: "#", img: "ressources/image/siehr.png.webp" },
+  { name: "SMG Groupe", link: "#", img: "ressources/image/smggroupe.png.webp" },
+  { name: "Sovec", link: "#", img: "ressources/image/sovec.jpg.webp" },
+  { name: "Technichauffe", link: "#", img: "ressources/image/technichauffe.png" },
+  { name: "Vaudin", link: "#", img: "ressources/image/vaudin.jpg.webp" }
+];
+
 closeSponsorsBtn.onclick = () => { sponsorsModal.style.display = 'none';}
 
 function getQueryParam(param) {
@@ -24,44 +52,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const hasVisited = sessionStorage.getItem("visited");
   if(!hasVisited){ 
     document.getElementById('sponsors-modal').style.display = 'flex';
-    const randomNumber = Math.floor(Math.random() * 3) + 1;
-    if (randomNumber === 1) {
-      document.querySelector('.sponsors').innerHTML = `
-        <a href="https://exalliance-finance.fr/" target="_blank">
-          <img src="ressources/image/exalliance.png" alt="Exalliance">
-        </a>
-      `;
-    } else if (randomNumber === 2) {
-      document.querySelector('.sponsors').innerHTML = `
-        <a href="https://www.its-transports.fr/" target="_blank">
-          <img src="ressources/image/its.png" alt="ITS">
-        </a>
-      `;
-    } else if (randomNumber === 3) {
-      document.querySelector('.sponsors').innerHTML = `
-        <a href="https://www.promocash.com/ecommerce/" target="_blank">
-          <img src="ressources/image/promocash.png" alt="Promocash">
-        </a>
-      `;
-    } else if (randomNumber === 4) {
-      document.querySelector('.sponsors').innerHTML = `
-        <a href="https://www.sgofsecurite.fr/" target="_blank">
-          <img src="ressources/image/sgof.png" alt="SGOF">
-        </a>
-      `;
-    } else if (randomNumber === 5) {
-      document.querySelector('.sponsors').innerHTML = `
-        <a href="https://www.sovec-entreprises.fr/" target="_blank">
-          <img src="ressources/image/sovec.jpg" alt="Sovec">
-        </a>
-      `;
-    } else if (randomNumber === 6) {
-      document.querySelector('.sponsors').innerHTML = `
-        <a href="https://www.energitim.eu/" target="_blank">
-          <img src="ressources/image/technichauffe.png" alt="Technichauffe">
-        </a>
-      `;
-    }
+    const randomSponsor = sponsors[Math.floor(Math.random() * sponsors.length)];
+
+    // insert HTML
+    document.querySelector(".sponsors").innerHTML = `
+      <a href="${randomSponsor.link}" target="_blank">
+        <img src="${randomSponsor.img}" alt="${randomSponsor.name}">
+      </a>
+    `;
     sessionStorage.setItem("visited", "true");
   }
   
