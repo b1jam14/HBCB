@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('dynamic-image').src = "ressources/image/winning.png";
           } else {
             document.getElementById('result-text').textContent = "Perdu !";
-            document.getElementById('result-text-2').textContent = "Retentez votre chance sur un autre match";
+            document.getElementById('result-text-2').textContent = "Essayez encore !";
             document.getElementById('dynamic-image').src = "ressources/image/losing.png";
           }
         } else {
-          document.getElementById('result-text-2').textContent = "En attente des résultats.";
+          document.getElementById('result-text-2').textContent = "En attente des résultats...";
           document.getElementById('dynamic-image').src = "ressources/image/pending.png";
         }
       }
