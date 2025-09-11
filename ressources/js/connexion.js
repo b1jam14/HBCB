@@ -11,25 +11,29 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const password = document.getElementById('pw').value;
 
   try {
-    
     const user = await Parse.User.logIn(courriel, password);
-    
-    if(!user.get("emailVerified")){
-      document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
-      await Parse.User.logOut();
-      return;
-    }else {
-      console.log("Login successful for:", user.get("username"));
-
-      const page = await Parse.Cloud.run("getUserRolePage");
-
-      window.location.href = page;
-   }
-    
-
+    console.log("Login successful for:", user.get("username"));
+    const page = await Parse.Cloud.run("getUserRolePage");
+    window.location.href = page;
   } catch (error) {
-    document.getElementById('login-error').textContent = "Courriel ou mot de passe incorrect.";
     console.error("Login failed or Cloud Function error:", error.message);
+
+    switch (error.code) {
+    case 101:
+      // Invalid credentials
+      document.getElementById('login-error').textContent = "Courriel ou mot de passe incorrect.";
+      break;
+
+    case 100:
+      // Network or server error
+      document.getElementById('login-error').textContent = "Impossible de se connecter au serveur. Vérifiez votre connexion.";
+      break;
+
+    default:
+      // Other errors (Cloud Function failures, unexpected errors, etc.)
+      document.getElementById('login-error').textContent = "Une erreur est survenue. Avez-vous verifié votre courriel?.";
+      break;
+  }
   }
 });
 
