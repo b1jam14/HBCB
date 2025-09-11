@@ -21,16 +21,9 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     }else {
       console.log("Login successful for:", user.get("username"));
 
-      // Call the secure Cloud Function to get the page
       const page = await Parse.Cloud.run("getUserRolePage");
-      console.log("Redirecting to:", page);
 
-      // Redirect based on Cloud Function response
-      if (page === "/admin.html") {
-        window.location.href = "admin.html";
-      } else {
-        window.location.href = page ;
-      }
+      window.location.href = page;
    }
     
 
