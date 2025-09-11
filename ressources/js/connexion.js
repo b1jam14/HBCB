@@ -11,7 +11,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const password = document.getElementById('pw').value;
 
   try {
-    await Parse.User.logOut();
+    
     const user = await Parse.User.logIn(courriel, password);
     
     if(!user.get("emailVerified")){
