@@ -261,24 +261,25 @@ body {
     display: flex;       /* side by side */
   height: 50px;
   }
-.bottom-section {
+  .bottom-section {
     background-color: white;
-    color: white;
-    text-align: center;
-    padding: 10px;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
+
 .footer-images {
     display: flex;
-    justify-content: space-around; /* espace égal entre les images */
+    justify-content: space-evenly; /* equal space between AND around images */
     align-items: center;
+    width: 100%;
 }
+
 .footer-images img {
-    width: 60px; /* ou la largeur que tu souhaites */
-    height: auto; /* garde les proportions */
+    width: 70px;  /* adjust size as needed */
+    height: auto;
 }
+
 .modal {
     position: fixed;
     z-index: 1000;

@@ -248,19 +248,19 @@ input:disabled {
 }
 .bottom-section {
   background-color: white;
-  color: white;
-  text-align: center;
-  padding: 10px;
   position: fixed;
   bottom: 0;
   width: 100%;
 }
+
 .footer-images {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly; /* equal space between AND around images */
   align-items: center;
+  width: 100%;
 }
+
 .footer-images img {
-  width: 60px; 
+  width: 70px;  /* adjust size as needed */
   height: auto;
 }

@@ -57,23 +57,23 @@ body {
 }
 
 .bottom-section {
-    background-color: white;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  .footer-images {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .footer-images img {
-    width: 60px; 
-    height: auto;
-  }
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-images {
+  display: flex;
+  justify-content: space-evenly; /* equal space between AND around images */
+  align-items: center;
+  width: 100%;
+}
+
+.footer-images img {
+  width: 70px;  /* adjust size as needed */
+  height: auto;
+}
 
 
   .container {
