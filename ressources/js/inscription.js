@@ -75,6 +75,7 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
   user.set("email", email);
   user.set("birthDate", date);
   user.set("role", "user");
+  user.set("emailVerification", True);
 
   const acl = new Parse.ACL();
   acl.setPublicReadAccess(true); // everyone can read
