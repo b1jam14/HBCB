@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     console.log(users);
 
-    users.forEach((user, index) => {
+    users.filter(user => user.get('emailVerified') === true).forEach((user, index) => {
       console.log(user.get("firstName") + " " + user.get("lastName") + " - Points: " + user.get("point"));
       const username = user.get("firstName") + " " + user.get("lastName").charAt(0) + ".";
       const userDiv = document.createElement('div');
