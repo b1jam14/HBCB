@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('dynamic-image').src = "ressources/image/winning.png";
           } else {
             document.getElementById('result-text').textContent = "Perdu !";
-            document.getElementById('result-text-2').textContent = "Meilleure chance la prochaine fois ";
+            document.getElementById('result-text-2').textContent = "Retentez votre chance sur un autre match";
             document.getElementById('dynamic-image').src = "ressources/image/losing.png";
           }
         } else {
