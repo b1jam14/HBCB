@@ -115,7 +115,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
         //A VERIFIER ^
 
-      if (betwinner === undefined && diffHours <= 48 && diffHours >= 0) {
+        console.log(`Diff Hours: ${diffHours}`);
+
+      if (betwinner === undefined && diffHours <= 50 && diffHours >= 2) {
         matchDiv.innerHTML = `
           <button class="match-button" id="${match.id}">
             <div class="match-content">
@@ -135,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           window.location.href = 'bet.html?matchId=' + match.id;
         });
 
-      }else if (diffHours < 0 && diffHours >= -72) {
+      }else if (diffHours < 2 && diffHours >= -70) {
         if(!betwinner || betwinner.id === undefined){
           matchDiv.innerHTML = `
           <button class="match-button orange" id="${match.id}">
