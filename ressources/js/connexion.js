@@ -31,7 +31,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       } else {
         window.location.href = page ;
       }
-   // }
+   }
     
 
   } catch (error) {
