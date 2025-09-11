@@ -31,7 +31,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
     default:
       // Other errors (Cloud Function failures, unexpected errors, etc.)
-      document.getElementById('login-error').textContent = "Une erreur est survenue. Avez-vous verifié votre courriel?.";
+      document.getElementById('login-error').textContent = "Une erreur est survenue. Avez-vous verifié votre courriel?";
       break;
   }
   }
