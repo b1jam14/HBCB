@@ -62,6 +62,14 @@ body {
     font-size: 24px;
     cursor: pointer;
 }
+.modal-link {
+    display: block;
+    margin-bottom: 17px;
+   
+}
+.modal-link:hover {
+    text-decoration: underline;
+}
 #modal-logout-btn{
     background-color: #d74040;
     border: 2px solid #d74040;
