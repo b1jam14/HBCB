@@ -13,6 +13,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   try {
     
     const user = await Parse.User.logIn(courriel, password);
+    document.getElementById('login-error').textContent = "test";
     
     if(!user.get("emailVerified")){
       document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
