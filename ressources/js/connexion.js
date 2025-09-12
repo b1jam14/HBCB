@@ -12,6 +12,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
   try {
     const user = await Parse.User.logIn(courriel, password);
+    console.log("User logged in:", user);
      if(!user.get("emailVerified")){
       document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
       await Parse.User.logOut();
