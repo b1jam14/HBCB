@@ -12,9 +12,15 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
   try {
     const user = await Parse.User.logIn(courriel, password);
-    console.log("Login successful for:", user.get("username"));
-    const page = await Parse.Cloud.run("getUserRolePage");
-    window.location.href = page;
+     if(!user.get("emailVerified")){
+      document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
+      await Parse.User.logOut();
+      return;
+    }else {
+      console.log("Login successful for:", user.get("username"));
+      const page = await Parse.Cloud.run("getUserRolePage");
+      window.location.href = page;
+    }
   } catch (error) {
     console.error("Login failed or Cloud Function error:", error.message);
 
