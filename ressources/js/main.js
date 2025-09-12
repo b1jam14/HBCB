@@ -49,7 +49,7 @@ async function securePageLoad(page) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const hasVisited = sessionStorage.getItem("visited");
+  const hasVisited = localStorage.getItem("visited");
   if(!hasVisited){ 
     document.getElementById('sponsors-modal').style.display = 'flex';
     const randomSponsor = sponsors[Math.floor(Math.random() * sponsors.length)];
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <img src="${randomSponsor.img}" alt="${randomSponsor.name}">
       </a>
     `;
-    sessionStorage.setItem("visited", "true");
+    localStorage.setItem("visited", "true");
   }
   
   securePageLoad(window.location.pathname);
