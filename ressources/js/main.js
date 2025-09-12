@@ -257,6 +257,7 @@ document.getElementById('modal-close-btn').addEventListener('click', () => docum
 document.getElementById('modal-logout-btn').addEventListener('click', async () => {
   try{
     await Parse.User.logOut();
+    localStorage.setItem("visited", "false");
     window.location.href = 'connexion.html';
   } catch (error) {
     console.error('Error logging out:', error);
