@@ -26,7 +26,7 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
   }
 
   const password = document.getElementById('password-input').value;
-  const regexpassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const regexpassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[^\s]{8,}$/;
   if (!regexpassword.test(password)) {
     document.getElementById('password-input').value = "";
     document.getElementById('password-label').textContent = "Mot de passe : (8 caractères, maj, min, chiffre, spécial)";
