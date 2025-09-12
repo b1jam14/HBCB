@@ -86,7 +86,7 @@ document.getElementById('button-bet').addEventListener('click', async function (
 
   } catch (error) {
     console.error("Erreur Cloud Function:", error);
-    alert("BlabLa Échec de l'enregistrement du pari. Voir la console pour plus de détails.");
+    alert(" Échec de l'enregistrement du pari. Voir la console pour plus de détails.");
   }
 });
 
