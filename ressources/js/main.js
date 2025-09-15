@@ -80,10 +80,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const query = new Parse.Query(Games);
   query.descending("date");
 
-  const User = Parse.Object.extend("_User");
-  const userQuery = new Parse.Query(User);
-  userQuery.descending("point");
-
   try {
     const matches = await query.find();
 
@@ -114,8 +110,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         timeZone: 'UTC'
       });
         //A VERIFIER ^
-
-        console.log(`Diff Hours: ${diffHours}`);
 
       if (betwinner === undefined && diffHours <= 50 && diffHours >= 2) {
         matchDiv.innerHTML = `
@@ -188,44 +182,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       matchContainer.appendChild(matchDiv);
     });
 
-    const users = await userQuery.find();
-    const classementContainer = document.getElementById('classement-container');
-
-    console.log(users);
-
-    users.filter(user => user.get('emailVerified') === true).forEach((user, index) => {
-      console.log(user.get("firstName") + " " + user.get("lastName") + " - Points: " + user.get("point"));
-      const username = user.get("firstName") + " " + user.get("lastName").charAt(0) + ".";
-      const userDiv = document.createElement('div');
-      userDiv.classList.add('classement-item');
-
-      let rankDisplay = '';
-      if (index === 0) {
-      rankDisplay = '🥇'; // U+1F947
-      } else if (index === 1) {
-      rankDisplay = '🥈'; // U+1F948
-      } else if (index === 2) {
-      rankDisplay = '🥉'; // U+1F949
-      } else {
-      rankDisplay = index + 1 + "."; // Display rank number for others
-      }
-
-      userDiv.innerHTML = `
-      <div class="classement">
-      <div class="classement-content">
-        <div class="classement-user">${rankDisplay} ${username}</div>
-        <div class="classement-point">${user.get('point')}</div>
-      </div>
-      </div>
-      `;
-
-      // Apply font-weight: 600 to the current user
-      if (user.id === Parse.User.current().id) {
-      userDiv.querySelector('.classement-user').style.fontWeight = '600';
-      }
-
-      classementContainer.appendChild(userDiv);
-    });
+    displayRanking();
 
   } catch (err) {
     console.error('Erreur Parse:', err);
@@ -263,3 +220,37 @@ document.getElementById('modal-logout-btn').addEventListener('click', async () =
     console.error('Error logging out:', error);
   }
 })
+
+
+
+
+async function displayRanking() {
+  const { top, currentUser } = await Parse.Cloud.run("getRanking");
+  const container = document.getElementById("classement-container");
+  container.innerHTML = "";
+
+  [...top, ...(currentUser ? ["..."] : []), currentUser].forEach(user => {
+    if (!user) return; // skip null
+
+    if (user === "...") {
+      container.innerHTML += `<div class="classement-dots" style="color: #1976d2;font-weight:600">. . .</div>`;
+      return;
+    }
+
+    const rankIcon = ["🥇","🥈","🥉"][user.rank-1] || user.rank + ".";
+    const username = `${user.firstName} ${user.lastName.charAt(0)}.`;
+
+    container.innerHTML += `
+      <div class="classement-item">
+        <div class="classement">
+          <div class="classement-content">
+            <div class="classement-user" style="font-weight:${user.id === Parse.User.current().id ? "600" : "400"};">
+              ${rankIcon} ${username}
+            </div>
+            <div class="classement-point">${user.point}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
