@@ -15,6 +15,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     console.log("User logged in:", user);
      if(!user.get("emailVerified")){
       document.getElementById("blankhide").style.height = "0px";
+      document.getElementById("login-error").style.color = "red";
       document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
       await Parse.User.logOut();
       return;
