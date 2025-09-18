@@ -3,6 +3,7 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    background-color: whitesmoke;
 }
 .top-section{
     position: fixed;
@@ -175,7 +176,7 @@ form {
   flex-direction: column;
   border-bottom: 2px solid #ccc;
   position: fixed;
-  background-color: white;
+  background-color: whitesmoke;
 }
 .slider button {
   flex: 1;
