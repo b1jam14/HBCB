@@ -89,3 +89,5 @@ document.getElementById('button-enter-save').addEventListener('click',async (e) 
     console.error("Error while registering user end:", error.message);
   }
 });
+
+

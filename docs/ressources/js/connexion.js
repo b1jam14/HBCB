@@ -14,6 +14,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     const user = await Parse.User.logIn(courriel, password);
     console.log("User logged in:", user);
      if(!user.get("emailVerified")){
+      document.getElementById("blankhide").style.height = "0px";
       document.getElementById('login-error').textContent = "Veuillez vérifier votre courriel avant de vous connecter.";
       await Parse.User.logOut();
       return;
@@ -46,4 +47,27 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
 document.getElementById('signup-btn').addEventListener('click', (e) => {
   window.location.href = "inscription.html";
+});
+
+document.getElementById('reset-email-btn').addEventListener('click', (e) => {
+  e.preventDefault();
+  const email = document.getElementById("id").value.trim();
+  const messageEl = document.getElementById("login-error");
+  document.getElementById("blankhide").style.height = "0px";
+
+  if (!email) {
+      messageEl.style.color = "red";
+      messageEl.textContent = "Veuillez entrer votre courriel avant de demander une réinitialisation.";
+      return;
+  }
+
+  Parse.User.requestPasswordReset(email)
+      .then(() => {
+          messageEl.style.color = "green";
+          messageEl.textContent = "Un email de réinitialisation a été envoyé à : " + email;
+      })
+      .catch((error) => {
+          console.error("Erreur lors de la demande de réinitialisation :", error);
+      });
+
 });
