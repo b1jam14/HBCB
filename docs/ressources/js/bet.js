@@ -24,7 +24,7 @@ function updateTeam(team) {
   const select = document.createElement("select");
   select.name = "bestscorer";
   select.id = "bestscorer";
-  const equipe = [];
+  let equipe = [];
   if (team && team.includes("SM")) {
     equipe = [
       "BAUMERT ANTONIN",
@@ -187,7 +187,7 @@ function updateTeam(team) {
       "WILHELM SAMUEL"
     ];    
   }else if (team && team.includes("U15F")) {
-    const equipe = [
+    equipe = [
       "BALSALOBRE LOLA",
       "BULUT DILARA",
       "DOUSSEAU LUCIE",
@@ -223,7 +223,6 @@ function updateTeam(team) {
       "ALEV SAUER SACHA",
       "BLAISE ZOE",
       "BORN MATEI",
-      "BORTIER LOUISE",
       "BORTIER LOUISE",
       "CLAUSS AUGUSTIN",
       "ESSLINGER NATHAN",
