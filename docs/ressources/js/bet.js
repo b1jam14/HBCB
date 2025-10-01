@@ -18,6 +18,7 @@ async function securePageLoad(page) {
   }
 }
 
+/*
 function updateTeam(team) {
   const playerContainer = document.getElementById("playerContainer");
   const select = document.createElement("select");
@@ -253,7 +254,7 @@ function updateTeam(team) {
   });
   playerContainer.innerHTML = "";
   playerContainer.appendChild(select);
-}
+}*/
 
 document.getElementById('button-team1').addEventListener('click', () => {
   document.getElementById('button-team1').style.backgroundColor = '#4075d7';
