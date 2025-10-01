@@ -18,9 +18,9 @@ async function securePageLoad(page) {
   }
 }
 
-/*
+
 function updateTeam(team) {
-  const playerContainer = document.getElementById("playerContainer");
+  /*const playerContainer = document.getElementById("playerContainer");
   const select = document.createElement("select");
   select.name = "bestscorer";
   select.id = "bestscorer";
@@ -254,7 +254,7 @@ function updateTeam(team) {
   });
   playerContainer.innerHTML = "";
   playerContainer.appendChild(select);
-}*/
+*/}
 
 document.getElementById('button-team1').addEventListener('click', () => {
   document.getElementById('button-team1').style.backgroundColor = '#4075d7';
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2️⃣ Update the button text
     document.getElementById('button-team2').textContent = match.get("adversaire");
 
-    //updateTeam(match.get("team"));
+    updateTeam(match.get("team"));
 
     // 3️⃣ Optionally, fetch the user's bet if needed
     const Bets = Parse.Object.extend("Bets");
