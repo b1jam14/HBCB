@@ -18,6 +18,243 @@ async function securePageLoad(page) {
   }
 }
 
+function updateTeam(team) {
+  const playerContainer = document.getElementById("playerContainer");
+  const select = document.createElement("select");
+  select.name = "bestscorer";
+  select.id = "bestscorer";
+  const equipe = [];
+  if (team && team.includes("SM")) {
+    equipe = [
+      "BAUMERT ANTONIN",
+      "BERGMILLER NATHAN",
+      "BERNHARD LUCAS",
+      "BOEHM THOMAS",
+      "BOEHM HUGO",
+      "BORTIER THIBAUT",
+      "BRIGEL HERVE",
+      "DREYER GUILLAUME",
+      "DREYER RAPHAEL",
+      "DREYER AYMERIC",
+      "FELTIN VINCENT",
+      "FORGES LUCAS",
+      "FRETARD MARTIN",
+      "FRIEDRICH CEDRIC",
+      "GARCIA MAXIME",
+      "GAUTREAU KEVIN",
+      "GOMELET XAVIER",
+      "HAAS CHRISTIAN",
+      "HOFFMANN MICKAEL",
+      "HORNECKER ARNAUD",
+      "HUNTZINGER GUILLAUME",
+      "IDRISSI BRAHIM",
+      "JANKOWSKI YOHAN",
+      "JANKOWSKI ROMAIN",
+      "KIEFFER DENIS",
+      "KNAB ADRIEN",
+      "KOCH VINCENT",
+      "KORDIAN CYRIL",
+      "KORDIAN THOMAS",
+      "KRUCH TRISTAN",
+      "LAFAYE STEPHANE",
+      "LANDMANN THIERRY",
+      "LUCK MATHIEU",
+      "MARSON REMI",
+      "MARTIN HUGO",
+      "MEGLEN ARTHUR",
+      "METZGER KEVIN",
+      "METZGER JONATHAN",
+      "MEYER GREGOIRE",
+      "MILLIET VOLODIA",
+      "NIEDERMEYER YANN",
+      "PALEE GEOFFROY",
+      "PASQUER WILFRIED",
+      "PASTORE DAMIEN",
+      "PERIN VICTOR",
+      "POIROT ALEXANDRE",
+      "ROCZANOV HUGO",
+      "SAHIN SELAHATTIN",
+      "SCHLACHTER MARC",
+      "SCHOENDORF ARTHUR",
+      "SELLINI CEDRIC",
+      "SIMOES NUNO",
+      "SOMMER MATHIEU",
+      "SOMMER THOMAS",
+      "SPRENG NICOLAS",
+      "TRAPPLER MICHEL",
+      "TRAUTTMANN BENJAMIN",
+      "VAUDIN JORDAN",
+      "VAUDIN CYRIL",
+      "WEHRLE GERARD",
+      "WEYMANN AMAURY",
+      "WILHELM BERTRAND",
+      "WILHELM LEO",
+      "WODLING ALEXIS",
+      "ZOLVER BENJAMIN",
+      "ZOLVER NICOLAS"
+    ];
+    
+  }else if (team && team.includes("SF")) {
+    equipe = [
+      "ANDRES CHRISTELLE",
+      "BARRIERE-VARJU LISA",
+      "BAUMERT LUCIE",
+      "BONJEAN LEONIE",
+      "BOTTEMER JULIE",
+      "BOUCHER CLEMENCE",
+      "BOUCHER JULIETTE",
+      "BULUT ACELYA",
+      "BUSTOS AXELLE",
+      "CARAYOL CELINE",
+      "DORSCH CLARA",
+      "DREYFUS SOPHIE",
+      "DUREY MARION",
+      "FELTIN EMMA",
+      "GHENZI CHRISTELLE",
+      "GILBERT ANAIS",
+      "HOFFER MANON",
+      "HUBRECHT ALYSSA",
+      "KNAB ALEXIE",
+      "KUNTZ MAUREEN",
+      "KUNTZ SOLENE",
+      "MARIN ELODIE",
+      "MATHMANN CAPUCINE",
+      "MEYER MEI",
+      "NEUROHR MORGANE",
+      "RUHM MANON",
+      "SAHIN VALERIE",
+      "SCHLEIFFER CHARLEN",
+      "SCHWALLER SAHIN MANON",
+      "TREMBLAY LISON",
+      "VAUDELET ALICE",
+      "WEISS LUCILE"
+    ];
+  }else if (team && team.includes("U18")) {
+    equipe = [
+      "ANDRES LIAM",
+      "BALTHAZARD AYMERIC",
+      "BRONNER THEO",
+      "CHARTIER THOMAS",
+      "CLIN HUGO",
+      "CNAPELYNCK TRISTAN",
+      "DEBERT-ROY VALENTIN",
+      "DUFOUR ENZO",
+      "FERNANDEZ TOM",
+      "FISCHER BRAUD ETHAN",
+      "FLORENTIN ADAM",
+      "GALLAIS MATHYS",
+      "GEISSEL THOMAS",
+      "HERBSTER GUSTAVE",
+      "HERZOG RAPHAEL",
+      "HIRSCHMULLER TRISTAN",
+      "LAUSECKER ALEX",
+      "MARCHANDON MELVILLE",
+      "MULLER JOHANN",
+      "PFEFFER SIMON",
+      "PFEIFFER MAXIME",
+      "PHILIPP ANTOINE",
+      "QUERELLE ANAEL",
+      "REBER TIMOTHEE",
+      "SCHMITT ROBIN",
+      "SCHOTT ANDI",
+      "SCHUH BENJAMIN",
+      "SENSENBRENNER LOUIS",
+      "SOLDA ANIS",
+      "SPRENG MATHEO",
+      "STANISIERE ELOI",
+      "URBAN ETHAN",
+      "WARRING EVAN",
+      "WEINMANN ANTOINE"
+    ];
+  }else if (team && team.includes("U15M")) {
+    equipe = [
+      "BALTHAZARD THOMAS",
+      "BAUER QUENTIN",
+      "DEBERT-ROY ANTOINE",
+      "FORTON MATHYS",
+      "HELBERT-RANCHON CHARLIE",
+      "LAFAYE JULIEN",
+      "MARSIGLIO THEO",
+      "MEYER VICTOR",
+      "MEYER LEO",
+      "MONTAUDIE JACQUES",
+      "POIROT-LAEGER TIMAO",
+      "SCHLEIFFER RUBEN",
+      "SCHMITT ARTHUR",
+      "SCHWALLER SAHIN LOUIS",
+      "SENGCHANH TIMEO",
+      "WILHELM SAMUEL"
+    ];    
+  }else if (team && team.includes("U15F")) {
+    const equipe = [
+      "BALSALOBRE LOLA",
+      "BULUT DILARA",
+      "DOUSSEAU LUCIE",
+      "GALEA LISE",
+      "KENNEL HERRMANN HANAE",
+      "METZ ZOE",
+      "SOUMANN EVA",
+      "STANISIERE MAHAUT",
+      "WEINMANN EMMA-LINE"
+    ]; 
+  }else if (team && team.includes("U13")) {
+    equipe = [
+      "BEDIOU GASTON",
+      "BICHWILLER TIMEO",
+      "DECHRISTE ROMAN",
+      "DILLENSCHNEIDER SAMUEL",
+      "GOMELET LEON",
+      "HEILIGENSTEIN HUGO",
+      "KLEIN CLEMENT",
+      "MAITRE GUILLAUME",
+      "MARTINELLE MARIE",
+      "MATHE GROSSE CHARLIE",
+      "MONTAUDIE MARTIN",
+      "OFFNER RALPH",
+      "PALEE LOUISA",
+      "PETITJEAN RENAUD",
+      "RENOUD LEANDRO",
+      "STACHOWIAK AUBIN",
+      "WILHELM GABRIEL"
+    ];    
+  }else if (team && team.includes("U11")) {
+    equipe = [
+      "ALEV SAUER SACHA",
+      "BLAISE ZOE",
+      "BORN MATEI",
+      "BORTIER LOUISE",
+      "BORTIER LOUISE",
+      "CLAUSS AUGUSTIN",
+      "ESSLINGER NATHAN",
+      "GUEGUEN LAURE",
+      "HEILIGENSTEIN ROBIN",
+      "HERR DARIO",
+      "JUNG LISON",
+      "KEDZIERSKI STEGER MARCEAU",
+      "KLEMKE JOHAN",
+      "LUCK ESTEBAN",
+      "MARSIGLIO HUGO",
+      "MEYER ANATOLE",
+      "MEYER EMMA",
+      "MUNCH LUCKA",
+      "NICOT MARTIN",
+      "OBRECHT SASHA",
+      "PASQUER ELRICK",
+      "SCHAFF LEON",
+      "TROMBELLA ENZO",
+      "WEBER GOEMINNE VICTORIA"
+    ];    
+  }
+  equipe.forEach(player => {
+    const option = document.createElement("option");
+    option.value = player;
+    option.textContent = player;
+    select.appendChild(option);
+  });
+  playerContainer.innerHTML = "";
+  playerContainer.appendChild(select);
+}
+
 document.getElementById('button-team1').addEventListener('click', () => {
   document.getElementById('button-team1').style.backgroundColor = '#4075d7';
   document.getElementById('button-team1').style.color = 'white';
@@ -120,6 +357,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 2️⃣ Update the button text
     document.getElementById('button-team2').textContent = match.get("adversaire");
+
+    updateTeam(match.get("team"));
 
     // 3️⃣ Optionally, fetch the user's bet if needed
     const Bets = Parse.Object.extend("Bets");
