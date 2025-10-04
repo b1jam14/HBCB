@@ -93,27 +93,17 @@ label {
   color: #333;
   margin-bottom: 5px;
 }
-#gagnant-container {
-  border: 2px solid #4075d7;
-  border-radius: 25px;
-  padding: 10px 15px;
-  background-color: #f8faff;
-  width: 60%;
-  margin-bottom: 15px;
-  text-align: center;
-  text-align: center;          /* ✅ Centre le contenu textuel */
-  display: flex;               /* ✅ Active le mode flexbox */
-  flex-direction: column;      /* Aligne verticalement les éléments */
-  align-items: center;         /* ✅ Centre horizontalement la liste */
-  justify-content: center;     /* ✅ Centre verticalement si nécessaire */
-}
 
 #gagnant-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  text-align: center;          /* ✅ Centre le texte de chaque ligne */
-  width: 100%;   
+  width: 100%;  
+  text-align: center;          /* ✅ Centre le contenu textuel */
+  display: flex;               /* ✅ Active le mode flexbox */
+  flex-direction: column;      /* Aligne verticalement les éléments */
+  align-items: center;         /* ✅ Centre horizontalement la liste */
+  justify-content: center;     /* ✅ Centre verticalement si nécessaire */ 
 }
 
 #gagnant-list li {
