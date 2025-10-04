@@ -142,6 +142,9 @@ body {
     background-color: #f0f8ff; /* Légère teinte au survol */
     
 }
+.teams.green, .arrow.green { color: green; }
+.teams.red, .arrow.red { color: #b30000; }
+.teams.orange, .arrow.orange { color: orange; }
 .match-content {
     display: flex;
     justify-content: space-between;
