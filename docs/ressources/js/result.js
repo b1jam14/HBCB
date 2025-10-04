@@ -36,27 +36,37 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (matchId !== '0') {
     try {
       const Games = Parse.Object.extend("Games");
-      const query = new Parse.Query(Games);    
+      const query = new Parse.Query(Games);
       query.equalTo("objectId", matchId);
       const matchInfo = await query.first();
 
       if (matchInfo) {
-        const betWinner = matchInfo.get("betWinner");
-        if (betWinner) {
-          if (betWinner.id === currentUser.id) {
-            document.getElementById('result-text').textContent = "Bravo!";
-            document.getElementById('result-text-2').textContent = "Vous êtes le gagnant 🏆";
+        const betWinners = matchInfo.get("betWinners"); // tableau de pointers vers _User
+
+        if (betWinners && betWinners.length > 0) {
+          // Vérifier si l'utilisateur courant est dans la liste des gagnants
+          const isWinner = betWinners.some(w => w.id === currentUser.id);
+
+          if (isWinner) {
+            document.getElementById('result-text').textContent = "Bravo !";
+            document.getElementById('result-text-2').textContent = "Vous êtes parmi les gagnants 🏆";
             document.getElementById('dynamic-image').src = "ressources/image/winning.png";
           } else {
             document.getElementById('result-text').textContent = "Perdu !";
             document.getElementById('result-text-2').textContent = "Essayez encore !";
             document.getElementById('dynamic-image').src = "ressources/image/losing.png";
           }
+
         } else {
+          document.getElementById('result-text').textContent = "Résultats non publiés";
           document.getElementById('result-text-2').textContent = "En attente des résultats...";
           document.getElementById('dynamic-image').src = "ressources/image/pending.png";
         }
-      }
+
+      } else {
+        console.error("Match introuvable");
+}
+
     } catch (error) {
       console.error("Error retrieving match info:", error.message);
     }

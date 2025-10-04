@@ -172,24 +172,35 @@ document.getElementById('button-enter-generate').addEventListener('click', async
   const bestScorer = document.getElementById('bestscorer-text').value;
 
   try {
-    const result = await Parse.Cloud.run("generateWinner", {
+    const result = await Parse.Cloud.run("generateWinners", {
       matchId,
       scoreteam1,
       scoreteam2
     });
-    document.getElementById("gagnant-text").value = result.winner;
-    document.getElementById("nb-bet-text").textContent = `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
-
+  
+    // Afficher la liste des gagnants
+    if (result.winners && result.winners.length > 0) {
+      document.getElementById("gagnant-text").value = result.winners.join(", ");
+    } else {
+      document.getElementById("gagnant-text").value = "Aucun gagnant 😢";
+    }
+  
+    // Afficher le nombre de paris corrects
+    document.getElementById("nb-bet-text").textContent = 
+      `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
+  
+    // Générer les points (si ta logique le requiert toujours)
     await Parse.Cloud.run("generatePoint", {
       matchId,
       bestScorer,
       scoreteam1,
       scoreteam2
     });
+  
   } catch (error) {
     console.error("Erreur Cloud Function:", error);
-    alert("Échec de la génération du gagnant.");
-  }
+    alert("Échec de la génération des gagnants.");
+  }  
 });
 
 document.getElementById('button-delete').addEventListener('click', async (e) => {

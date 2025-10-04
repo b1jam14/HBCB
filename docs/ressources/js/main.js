@@ -84,34 +84,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     const matches = await query.find();
 
     matches.forEach(match => {
-      const matchDateTime = match.get("date"); 
+      const matchDateTime = match.get("date");
       const now = new Date();
-
-      //A VERIFIER 
-      // Make sure both are in UTC for comparison
+    
+      // Calcul du décalage en heures
       const diffHours = (matchDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
-
-      const betwinner = match.get("betWinner");
-      
+    
+      const betWinners = match.get("betWinners"); // tableau de pointeurs vers _User
       const matchDiv = document.createElement('div');
       matchDiv.classList.add('match');
-
-      // Format date in UTC
+    
+      // Format date
       const formattedDate = matchDateTime.toLocaleDateString('fr-FR', {
         day: '2-digit',
         month: '2-digit',
         timeZone: 'UTC'
       });
-
-      // Format time in UTC
+    
+      // Format heure
       const formattedTime = matchDateTime.toLocaleTimeString('fr-FR', {
         hour: '2-digit',
         minute: '2-digit',
         timeZone: 'UTC'
       });
-        //A VERIFIER ^
-
-      if (betwinner === undefined && diffHours <= 50 && diffHours >= 2) {
+    
+      // === MATCHS EN COURS / À VENIR ===
+      if (!betWinners && diffHours <= 50 && diffHours >= 2) {
         matchDiv.innerHTML = `
           <button class="match-button" id="${match.id}">
             <div class="match-content">
@@ -123,55 +121,36 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
           </button>
         `;
-
+    
         const button = matchDiv.querySelector('.match-button');
         button.addEventListener('click', (e) => {
           e.preventDefault();
           sessionStorage.setItem('matchId', match.id);
           window.location.href = 'bet.html?matchId=' + match.id;
         });
-
-      }else if (diffHours < 2 && diffHours >= -70) {
-        if(!betwinner || betwinner.id === undefined){
-          matchDiv.innerHTML = `
-          <button class="match-button orange" id="${match.id}">
-          <div class="match-content">
-            <div class="match-info">
-              <div class="teams orange">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
-              <div class="match-time">${formattedDate} - ${formattedTime}</div>
-            </div>
-            <div class="arrow orange">&gt;</div>
-          </div>
-          </button>
-        `;
-
-        }else if(betwinner.id === currentUser.id){
-          matchDiv.innerHTML = `
-          <button class="match-button green" id="${match.id}">
+    
+      // === MATCHS TERMINÉS OU EN COURS DE TRAITEMENT ===
+      } else if (diffHours < 2 && diffHours >= -70) {
+        let colorClass = "orange"; // défaut = attente de résultats
+    
+        if (Array.isArray(betWinners) && betWinners.length > 0) {
+          // Vérifie si l'utilisateur est dans les gagnants
+          const isWinner = betWinners.some(w => w.id === currentUser.id);
+          colorClass = isWinner ? "green" : "red";
+        }
+    
+        matchDiv.innerHTML = `
+          <button class="match-button ${colorClass}" id="${match.id}">
             <div class="match-content">
               <div class="match-info">
-                <div class="teams green">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+                <div class="teams ${colorClass}">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
                 <div class="match-time">${formattedDate} - ${formattedTime}</div>
               </div>
-              <div class="arrow green">&gt;</div>
+              <div class="arrow ${colorClass}">&gt;</div>
             </div>
           </button>
         `;
-
-        }else if(betwinner.id !== currentUser.id){
-          matchDiv.innerHTML = `
-          <button class="match-button red" id="${match.id}" >
-            <div class="match-content">
-              <div class="match-info">
-                <div class="teams red">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
-                <div class="match-time">${formattedDate} - ${formattedTime}</div>
-              </div>
-              <div class="arrow red">&gt;</div>
-            </div>
-          </button>
-        `;
-        } 
-
+    
         const button = matchDiv.querySelector('.match-button');
         button.addEventListener('click', (e) => {
           e.preventDefault();
@@ -179,8 +158,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           window.location.href = 'result.html?matchId=' + match.id;
         });
       }
+    
       matchContainer.appendChild(matchDiv);
-    });
+    });    
 
     displayRanking();
 
