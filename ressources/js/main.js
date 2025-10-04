@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Calcul du décalage en heures
       const diffHours = (matchDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
     
-      const betWinners = match.get("betWinners"); // tableau de pointeurs vers _User
+      const betWinners = match.get("betWinner"); // tableau de pointeurs vers _User
       const matchDiv = document.createElement('div');
       matchDiv.classList.add('match');
     

@@ -172,17 +172,21 @@ document.getElementById('button-enter-generate').addEventListener('click', async
   const bestScorer = document.getElementById('bestscorer-text').value;
 
   try {
-    const result = await Parse.Cloud.run("generateWinners", {
+    const result = await Parse.Cloud.run("generateWinner", {
       matchId,
       scoreteam1,
       scoreteam2
     });
+
+    console.log("Winners generated successfully:", result);
   
     // Afficher la liste des gagnants
     if (result.winners && result.winners.length > 0) {
-      document.getElementById("gagnant-text").value = result.winners.join(", ");
+      document.getElementById("gagnant-list").innerHTML = result.winners
+        .map(winner => `<li>${winner}</li>`)
+        .join("");
     } else {
-      document.getElementById("gagnant-text").value = "Aucun gagnant 😢";
+      document.getElementById("gagnant-list").innerHTML = "<li>Aucun gagnant 😢</li>";
     }
   
     // Afficher le nombre de paris corrects

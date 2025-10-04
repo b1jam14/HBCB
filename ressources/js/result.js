@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const matchInfo = await query.first();
 
       if (matchInfo) {
-        const betWinners = matchInfo.get("betWinners"); // tableau de pointers vers _User
+        const betWinners = matchInfo.get("betWinner"); // tableau de pointers vers _User
 
         if (betWinners && betWinners.length > 0) {
           // Vérifier si l'utilisateur courant est dans la liste des gagnants

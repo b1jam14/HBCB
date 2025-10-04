@@ -88,27 +88,30 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
       }else if (diffHours < 2 && diffHours >= -70) {
-        if(!betwinner || betwinner.id === undefined){
+        if (!betwinner || betwinner.length === 0) {
+          // === Aucun résultat encore publié ===
           matchDiv.innerHTML = `
-          <button class="match-button orange" id="${match.id}">
-          <div class="match-content">
-            <div class="match-info">
-              <div class="teams orange">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
-              <div class="match-time">${formattedDate} - ${formattedTime}</div>
-            </div>
-            <div class="arrow orange">&gt;</div>
-          </div>
-          </button>
-        `;
-
-        const button = matchDiv.querySelector('.match-button');
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          sessionStorage.setItem('matchId', match.id);
-          window.location.href = 'modifygame.html?matchId=' + match.id;
-        });
-        }else if(betwinner){
-            matchDiv.innerHTML = `
+            <button class="match-button orange" id="${match.id}">
+              <div class="match-content">
+                <div class="match-info">
+                  <div class="teams orange">${match.get("team")} : HBCB - ${match.get("adversaire")}</div>
+                  <div class="match-time">${formattedDate} - ${formattedTime}</div>
+                </div>
+                <div class="arrow orange">&gt;</div>
+              </div>
+            </button>
+          `;
+        
+          const button = matchDiv.querySelector('.match-button');
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.setItem('matchId', match.id);
+            window.location.href = 'modifygame.html?matchId=' + match.id;
+          });
+        
+        } else if (Array.isArray(betwinner) && betwinner.length > 0) {
+          // === Match avec gagnants ===
+          matchDiv.innerHTML = `
             <button class="match-button green" id="${match.id}">
               <div class="match-content">
                 <div class="match-info">
@@ -119,6 +122,13 @@ document.addEventListener('DOMContentLoaded', async () => {
               </div>
             </button>
           `;
+        
+          const button = matchDiv.querySelector('.match-button');
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.setItem('matchId', match.id);
+            window.location.href = 'modifygame.html?matchId=' + match.id;
+          });
         }
 
         const button = matchDiv.querySelector('.match-button');
