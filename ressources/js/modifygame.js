@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           scoreteam1: matchInfo.get("bischoScore"),
           scoreteam2: matchInfo.get("adversaireScore")
         });
-
+        console.log(betwinner);
         if (betwinner) {
           const betwinnerPointer = {
             __type: "Pointer",
@@ -86,7 +86,24 @@ document.addEventListener('DOMContentLoaded', async () => {
           document.getElementById('score-select1').value = matchInfo.get("bischoScore");
           document.getElementById('score-select2').value = matchInfo.get("adversaireScore");
           document.getElementById('bestscorer-text').value = matchInfo.get("bestScorer");
-          document.getElementById('gagnant-text').value = await Parse.Cloud.run("getUsername", { betwinner: betwinnerPointer });
+          let winners = matchInfo.get("betWinner");
+          if (!Array.isArray(winners)) {
+            winners = winners ? [winners] : [];
+          }
+          
+          const promises = winners.map(winnerPointer => 
+            Parse.Cloud.run("getUsername", { betwinnerId: winnerPointer.id }) // <-- ici id
+          );
+
+          const usernames = await Promise.all(promises);
+          console.log(usernames);
+          const gagnantList = document.getElementById("gagnant-list"); // ou l'id réel de ton <ul> ou <ol>
+
+          usernames.forEach(username => {
+            const li = document.createElement("li");
+            li.textContent = username;
+            gagnantList.appendChild(li);
+          });
           document.getElementById("nb-bet-text").textContent = `Nombre de pari(s) correct(s) : ${result.validBets}/${result.totalBets}`;
           document.getElementById('score-select1').disabled = true;
           document.getElementById('score-select2').disabled = true;
