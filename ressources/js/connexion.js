@@ -11,7 +11,9 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const password = document.getElementById('pw').value;
 
   try {
+    console.log("breakpoint1");
     const user = await Parse.User.logIn(courriel, password);
+    console.log("breakpoint2");
     console.log("User logged in:", user);
      if(!user.get("emailVerified")){
       document.getElementById("blankhide").style.height = "0px";
