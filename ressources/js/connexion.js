@@ -28,8 +28,10 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       window.location.href = page;
     }
   } catch (error) {
-    console.error("Login failed or Cloud Function error:", error.message);
-    console.error("Full error object:", error);
+    console.error("LOGIN FAILED");
+  console.error("Full error object:", error);
+  console.error("Error code:", error.code);
+  console.error("Error message:", error.message);
     switch (error.code) {
     case 101:
       // Invalid credentials
