@@ -21,6 +21,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       return;
     }else {
       console.log("Login successful for:", user.get("username"));
+      console.log("Session Token:", user.getSessionToken());
       const page = await Parse.Cloud.run("getUserRolePage");
       window.location.href = page;
     }
