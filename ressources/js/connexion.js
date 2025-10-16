@@ -7,8 +7,19 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const courriel = document.getElementById('id').value;
-  const password = document.getElementById('pw').value;
+  // Read and sanitize inputs
+  const rawEmail = document.getElementById('id').value;
+  const rawPassword = document.getElementById('pw').value;
+
+  const courriel = rawEmail.trim();
+  const password = rawPassword.trim();
+
+  // Validate for illegal characters (especially line breaks)
+  if (/[\r\n]/.test(courriel) || /[\r\n]/.test(password)) {
+    document.getElementById('login-error').textContent =
+      "Le courriel ou le mot de passe contient des caractères non autorisés.";
+    return;
+  }
 
   try {
     console.log("breakpoint1");
