@@ -23,7 +23,8 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
   try {
     console.log("breakpoint1");
-    const user = await Parse.User.logIn(courriel, password);
+    //const user = await Parse.User.logIn(courriel, password);
+    const user = await Parse.User.logIn("benjamin.zolver@free.fr", "Benjamin4*");
     console.log("breakpoint2");
     console.log("User logged in:", user);
      if(!user.get("emailVerified")){
