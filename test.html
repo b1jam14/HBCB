@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Back4App Login Test</title>
+
+  <!-- Load Parse SDK -->
+  <script src="https://unpkg.com/parse@6.1.1/dist/parse.js"></script>
+  
+  <script>
+    Parse.initialize(
+      "dsosX49CI2Sb3fAskvraQl4zuSUsqmGr46cKNTKJ", // Application ID
+      "iHTYhrd7UsGulkqoyppRb1kemD4Vl26ti7GxJn0S"  // JavaScript Key
+    );
+    Parse.serverURL = "https://parseapi.back4app.com/";
+    console.log("App ID:", Parse.CoreManager.get("APPLICATION_ID"));
+    console.log("JS Key:", Parse.CoreManager.get("JAVASCRIPT_KEY"));
+    console.log("Server URL:", Parse.serverURL);
+
+    console.log("Parse SDK Version:", Parse.CoreManager.get("VERSION"));
+
+    async function testLogin() {
+      try {
+        let user = await Parse.User.logIn("benjamin.zolver@free.fr", "Benjamin4*");
+        console.log("Login successful:", user);
+        console.log("Session token:", user.getSessionToken());
+
+        const currentUser = await Parse.User.currentAsync();
+        console.log("Current user:", currentUser);
+      } catch (error) {
+        console.error("Login failed:", error);
+      }
+    }
+
+    // Run after page loads
+    window.addEventListener("load", testLogin);
+  </script>
+</head>
+<body>
+  <h1>Back4App Connection Test</h1>
+</body>
+</html>
