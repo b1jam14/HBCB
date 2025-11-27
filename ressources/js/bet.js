@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2️⃣ Update the button text
     document.getElementById('button-team2').textContent = match.get("adversaire");
 
-    //updateTeam(match.get("team"));
+    updateTeam(match.get("team"));
 
     // 3️⃣ Optionally, fetch the user's bet if needed
     const Bets = Parse.Object.extend("Bets");
