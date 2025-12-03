@@ -87,8 +87,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       const matchDateTime = match.get("date");
       const now = new Date();
     
-      // Calcul du décalage en heures
-      const diffHours = (matchDateTime.getTime() - now.getTime()) / (1000 * 60 * 60);
+      // Forcer heure d'hiver (UTC+1)
+const matchDateTimeWinter = new Date(matchDateTime.getTime() + 1 * 60 * 60 * 1000);
+
+// Calcul du décalage en heures
+const diffHours = (matchDateTimeWinter.getTime() - now.getTime()) / (1000 * 60 * 60);
     
       const betWinners = match.get("betWinner"); // tableau de pointeurs vers _User
       const matchDiv = document.createElement('div');
