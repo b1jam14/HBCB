@@ -60,20 +60,9 @@
         <div class="blank-2"></div>
         <!--<div id="playerContainer"></div>-->
         <!--<input id="bestscorer" placeholder="Meilleur buteur">-->
-        <select class="score-select" id="bestscorer"></select>
+        <select class="score-select minute-range" id="bestscorer"></select>
         <div style="font-size: smaller; color: grey;">(La feuille de match fera foi)</div>
       </div>
-
-      <script>
-  // Remplit le select avec des nombres de 1 à 120
-  const minuteSelect = document.getElementById('bestscorer');
-  for (let i = 1; i <= 120; i++) {
-    const option = document.createElement('option');
-    option.value = i;
-    option.textContent = i + "ᵉ minute";
-    minuteSelect.appendChild(option);
-  }
-</script>
 
       <div class="blank-2"></div>
 
