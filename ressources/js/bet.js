@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   } catch (error) {
       console.error("Erreur Parse:", error);
-      window.location.href = 'main.html';
+      //window.location.href = 'main.html';
   }
 });
 
