@@ -285,14 +285,24 @@ document.getElementById('button-team2').addEventListener('click', () => {
   winner='adversaire';
 });
 
-const selects = document.querySelectorAll('.score-select');
-for (const select of selects) {
+// Fill score selects (0 to 100)
+const scoreSelects = document.querySelectorAll('.score-range');
+for (const select of scoreSelects) {
   for (let i = 0; i <= 100; i++) {
     const option = document.createElement('option');
     option.value = i;
     option.textContent = i;
     select.appendChild(option);
   }
+}
+
+// Fill minute select (1 to 120)
+const minuteSelect = document.querySelector('.minute-range');
+for (let i = 1; i <= 120; i++) {
+  const option = document.createElement('option');
+  option.value = i;
+  option.textContent = i + "ᵉ minute";
+  minuteSelect.appendChild(option);
 }
 
 document.getElementById('button-bet').addEventListener('click', async function () {
