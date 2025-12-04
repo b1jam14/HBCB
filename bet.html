@@ -56,13 +56,24 @@
       <div class="blank-2"></div>
       
       <div class="square">
-        <div class="title">A la combientième minute sera marqué le premier but de la rencontre?</div>
+        <div class="title">À la combientième minute sera marqué le premier but de la rencontre ?</div>
         <div class="blank-2"></div>
         <!--<div id="playerContainer"></div>-->
         <!--<input id="bestscorer" placeholder="Meilleur buteur">-->
         <select class="score-select" id="bestscorer"></select>
         <div style="font-size: smaller; color: grey;">(La feuille de match fera foi)</div>
       </div>
+
+      <script>
+  // Remplit le select avec des nombres de 1 à 120
+  const minuteSelect = document.getElementById('bestscorer');
+  for (let i = 1; i <= 120; i++) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = i + "ᵉ minute";
+    minuteSelect.appendChild(option);
+  }
+</script>
 
       <div class="blank-2"></div>
 
