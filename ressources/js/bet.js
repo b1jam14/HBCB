@@ -298,10 +298,10 @@ for (const select of scoreSelects) {
 
 // Fill minute select (1 to 120)
 const minuteSelect = document.querySelector('.minute-range');
-for (let i = 1; i <= 120; i++) {
+for (let i = 0; i <= 50; i++) {
   const option = document.createElement('option');
   option.value = i;
-  option.textContent = i + "ᵉ minute";
+  option.textContent = i; //+ "ᵉ minute";
   minuteSelect.appendChild(option);
 }
 
