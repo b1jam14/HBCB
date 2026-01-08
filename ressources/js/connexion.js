@@ -30,6 +30,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     const user = await Parse.User.logIn(rawEmail, rawPassword);
 
     // Check email verification
+  /*
     if (!user.get("emailVerified")) {
       document.getElementById("blankhide").style.height = "0px";
       document.getElementById("login-error").style.color = "red";
@@ -38,6 +39,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       await Parse.User.logOut();
       return;
     }
+    */
 
     console.log("Login successful for:", user.get("username"));
     console.log("Session Token:", user.getSessionToken());
