@@ -285,6 +285,7 @@ document.getElementById('button-team2').addEventListener('click', () => {
   winner='adversaire';
 });
 
+/*
 // Fill score selects (0 to 100)
 const scoreSelects = document.querySelectorAll('.score-range');
 for (const select of scoreSelects) {
@@ -304,7 +305,7 @@ for (let i = 0; i <= 50; i++) {
   option.textContent = i; //+ "ᵉ minute";
   minuteSelect.appendChild(option);
 }
-
+*/
 document.getElementById('button-bet').addEventListener('click', async function () {
   const scoreteam1 = parseInt(document.getElementById('score-select1').value, 10);
   const scoreteam2 = parseInt(document.getElementById('score-select2').value, 10);
