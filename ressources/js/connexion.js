@@ -48,7 +48,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     const page = await Parse.Cloud.run("getUserRolePage");
     window.location.href = page;
 
-  /*} catch (error) {
+  } catch (error) {
     console.error("LOGIN FAILED:", error);
     const loginErrorEl = document.getElementById('login-error');
     switch (error.code) {
@@ -59,10 +59,10 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         loginErrorEl.textContent = "Impossible de se connecter au serveur. Vérifiez votre connexion.";
         break;
       default:
-        loginErrorEl.textContent = "Une erreur est survenue. Avez-vous vérifié votre courriel?";
+        loginErrorEl.textContent = "Une erreur est survenue. Veuillez réessayer.";
         break;
     }
-  }*/
+  }
 });
 
 // Signup button
