@@ -24,7 +24,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     return;
   }
 
-  //try {
+  try {
     // Classic SDK login using async/await
     await Parse.User.logOut();
     const user = await Parse.User.logIn(rawEmail, rawPassword);
@@ -41,8 +41,8 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     }
     */
 
-    console.log("Login successful for:", user.get("username"));
-    console.log("Session Token:", user.getSessionToken());
+    //console.log("Login successful for:", user.get("username"));
+    //console.log("Session Token:", user.getSessionToken());
 
     // Call Cloud Function safely
     const page = await Parse.Cloud.run("getUserRolePage");
